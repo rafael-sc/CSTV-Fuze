@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.orafaelsc.cstvfuze"
+    namespace = "com.orafaelsc.cstvfuze.data"
     compileSdk = 35
 
     defaultConfig {

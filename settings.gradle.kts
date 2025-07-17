@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "CSTV - Fuze.cc"
 include(":app")
+include(":domain")
+include(":data")
 include(":logs")

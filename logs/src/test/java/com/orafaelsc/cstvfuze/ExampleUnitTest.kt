@@ -1,4 +1,4 @@
-package com.orafaelsc.logs
+package com.orafaelsc.cstvfuze
 
 import org.junit.Test
 

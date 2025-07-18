@@ -8,6 +8,9 @@ import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
 import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 fun MatchDto.toDomain(): Match {
     val firstTeam = opponents.firstOrNull()?.opponent?.toDomain() ?: Team(0, "Unknown", null)
@@ -17,7 +20,7 @@ fun MatchDto.toDomain(): Match {
         id = id,
         firstTeam = firstTeam,
         secondTeam = secondTeam,
-        startTime = beginAt?.let { LocalDateTime.parse(it) } ?: LocalDateTime.now(),
+        startTime =  beginAt?.toLocalDate(),
         description = status,
         starTimeText = beginAt ?: "Unknown",
         leagueLogo = league.imageUrl.orEmpty(),
@@ -28,6 +31,12 @@ fun MatchDto.toDomain(): Match {
             else -> MatchStatus.NOT_STARTED
         }
     )
+}
+
+private fun String.toLocalDate(): LocalDateTime? {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+    val data = LocalDateTime.parse(this, formatter)
+    return data.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
 }
 
 fun LeagueDto.toDomain(): League = League(id, name, imageUrl)

@@ -31,17 +31,16 @@ val networkModule = module {
     single {
         val contentType = "application/json".toMediaType()
         val json = Json {
-            ignoreUnknownKeys = true // Safely ignore properties from the API that are not in our DTOs
+            ignoreUnknownKeys = true
         }
 
         Retrofit.Builder()
-            .baseUrl("https://api.pandascore.co/") // Base URL for the API
+            .baseUrl("https://api.pandascore.co/")
             .client(get<OkHttpClient>())
-            .addConverterFactory(json.asConverterFactory(contentType)) // Use Kotlinx Serialization for JSON parsing
+            .addConverterFactory(json.asConverterFactory(contentType))
             .build()
     }
 
-    // Provide the Retrofit service for our MatchesApi interface
     single {
         get<Retrofit>().create(MatchesApi::class.java)
     }

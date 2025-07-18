@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.orafaelsc.cstvfuze.ui.theme.CSTVFuzeccTheme
+import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -19,10 +20,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
 
-
         enableEdgeToEdge()
         setContent {
             CSTVFuzeccTheme {
+                val viewModel : MatchesViewModel = koinViewModel<MatchesViewModel>()
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
                         name = "Android",

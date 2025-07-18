@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
  * This use case fetches the list of matches and applies the core business logic
  * of sorting them to ensure "RUNNING" matches are always displayed first.
  */
-class GetMatchesUseCase(
+class MatchesUseCase(
     private val matchesRepository: MatchesRepository,
 ) {
     /**

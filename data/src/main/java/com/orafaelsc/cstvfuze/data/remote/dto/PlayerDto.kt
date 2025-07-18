@@ -3,10 +3,11 @@ package com.orafaelsc.cstvfuze.data.remote.dto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+
 @Serializable
-data class LeagueDto(
+data class PlayerDto(
     val id: Int,
-    val name: String,
-    @SerialName("image_url")
-    val imageUrl: String?
+    @SerialName("name") val name: String,
+    val nickname: String,
+    @SerialName("image_url") val imageUrl: String?
 )

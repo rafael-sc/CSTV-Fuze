@@ -4,9 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LeagueDto(
+data class SerieDto(
     val id: Int,
-    val name: String,
-    @SerialName("image_url")
-    val imageUrl: String?
+    @SerialName("full_name") val fullName: String
 )

@@ -5,6 +5,7 @@ import com.orafaelsc.cstvfuze.data.remote.dto.MatchDto
 import com.orafaelsc.cstvfuze.data.remote.dto.TeamDto
 import com.orafaelsc.cstvfuze.domain.model.League
 import com.orafaelsc.cstvfuze.domain.model.Match
+import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
 import java.time.LocalDateTime
 
@@ -20,6 +21,12 @@ fun MatchDto.toDomain(): Match {
         description = status,
         starTimeText = beginAt ?: "Unknown",
         leagueLogo = league.imageUrl.orEmpty(),
+        status = when (status) {
+            "finished" -> MatchStatus.FINISHED
+            "live" -> MatchStatus.RUNNING
+            "not_started" -> MatchStatus.NOT_STARTED
+            else -> MatchStatus.NOT_STARTED
+        }
     )
 }
 

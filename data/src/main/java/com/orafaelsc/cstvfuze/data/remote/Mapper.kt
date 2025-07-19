@@ -21,7 +21,7 @@ fun MatchDto.toDomain(): Match {
         firstTeam = firstTeam,
         secondTeam = secondTeam,
         startTime =  beginAt?.toLocalDate(),
-        description = status,
+        description = league.name + " - " + serie.fullName,
         starTimeText = beginAt ?: "Unknown",
         leagueLogo = league.imageUrl.orEmpty(),
         status = when (status) {
@@ -32,6 +32,7 @@ fun MatchDto.toDomain(): Match {
         }
     )
 }
+
 
 private fun String.toLocalDate(): LocalDateTime? {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")

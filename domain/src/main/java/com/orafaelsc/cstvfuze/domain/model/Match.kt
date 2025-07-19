@@ -12,3 +12,7 @@ data class Match(
     val leagueLogo: String,
     val status: MatchStatus,
 )
+
+fun Match.isLive(): Boolean {
+    return status == MatchStatus.RUNNING
+}

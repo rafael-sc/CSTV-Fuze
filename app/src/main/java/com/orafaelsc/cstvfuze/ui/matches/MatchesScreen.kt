@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.orafaelsc.cstvfuze.domain.model.Match
+import com.orafaelsc.cstvfuze.ui.components.CustomTopAppBar
+import com.orafaelsc.cstvfuze.ui.components.MatchCard
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +34,12 @@ fun MatchesScreen(
     val uiState = viewModel.uiState.collectAsState().value
     val isLoading = uiState.isLoading
 
-    Scaffold { paddingValues ->
+    Scaffold(
+        topBar = {
+            CustomTopAppBar(title = "Matches")
+        }
+
+    ) { paddingValues ->
 
         PullToRefreshBox(
             isRefreshing = isLoading,
@@ -44,9 +51,11 @@ fun MatchesScreen(
         ) {
             when {
                 isLoading -> {
+
                 }
 
                 uiState.error != null -> {
+
                 }
 
                 else -> {
@@ -56,8 +65,10 @@ fun MatchesScreen(
                         verticalArrangement = Arrangement.spacedBy(16.dp),
                     ) {
                         items(uiState.matches.size) { index ->
-                            Text(
-                                uiState.matches[index].firstTeam.name + " vs " + uiState.matches[index].secondTeam.name,
+                            MatchCard(
+                                match = uiState.matches[index],
+                                onClick = { onMatchClick(uiState.matches[index]) },
+                                modifier = Modifier.fillMaxSize(),
                             )
                         }
                     }

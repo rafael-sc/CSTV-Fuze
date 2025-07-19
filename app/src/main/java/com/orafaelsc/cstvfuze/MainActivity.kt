@@ -11,25 +11,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.orafaelsc.cstvfuze.ui.navigation.MatchesNavigation
 import com.orafaelsc.cstvfuze.ui.theme.CSTVFuzeccTheme
-import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
         enableEdgeToEdge()
         setContent {
             CSTVFuzeccTheme {
-                val viewModel : MatchesViewModel = koinViewModel<MatchesViewModel>()
-
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding),
-                    )
+                    MatchesNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

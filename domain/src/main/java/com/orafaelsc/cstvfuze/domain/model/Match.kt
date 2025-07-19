@@ -10,5 +10,5 @@ data class Match(
     val description: String,
     val starTimeText: String,
     val leagueLogo: String,
-    val status: MatchStatus
+    val status: MatchStatus,
 )

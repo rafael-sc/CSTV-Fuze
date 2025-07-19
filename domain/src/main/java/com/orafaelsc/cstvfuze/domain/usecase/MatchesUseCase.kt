@@ -17,15 +17,14 @@ class MatchesUseCase(
      * The `invoke` operator allows this class to be called as if it were a function.
      * e.g., `getMatchesUseCase()`
      */
-    suspend operator fun invoke(): Flow<List<Match>> {
-        return matchesRepository.getMatches().map { matches ->
+    suspend operator fun invoke(): Flow<List<Match>> =
+        matchesRepository.getMatches().map { matches ->
             matches.sortedWith(
                 compareBy<Match> { match ->
                     match.status != MatchStatus.RUNNING
                 }.thenBy { match ->
                     match.startTime
-                }
+                },
             )
         }
-    }
 }

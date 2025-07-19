@@ -18,9 +18,9 @@ class CSTVFuzeApp : Application() {
             androidContext(this@CSTVFuzeApp)
             modules(
                 appModule +
-                networkModule +
-                dataModule +
-                domainModule
+                    networkModule +
+                    dataModule +
+                    domainModule,
             )
         }
     }

@@ -1,6 +1,7 @@
 package com.orafaelsc.cstvfuze.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,17 +10,18 @@ import com.orafaelsc.cstvfuze.ui.matches.MatchesScreen
 
 @Composable
 fun MatchesNavigation(
-    navController: NavHostController = rememberNavController()
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
 ) {
     NavHost(
         navController = navController,
-        startDestination = "matches"
+        startDestination = "matches",
     ) {
         composable("matches") {
             MatchesScreen(
                 onMatchClick = { match ->
                     navController.navigate("match_details/${match.id}")
-                }
+                },
             )
         }
     }

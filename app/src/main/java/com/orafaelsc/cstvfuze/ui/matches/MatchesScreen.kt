@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalWindowInfo
@@ -24,6 +25,7 @@ import com.orafaelsc.cstvfuze.ui.components.CustomTopAppBar
 import com.orafaelsc.cstvfuze.ui.components.PullToRefreshBox
 import org.koin.androidx.compose.koinViewModel
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MatchesScreen(
@@ -31,7 +33,7 @@ fun MatchesScreen(
     viewModel: MatchesViewModel = koinViewModel<MatchesViewModel>(),
     onMatchClick: (Match) -> Unit,
 ) {
-    val uiState = viewModel.uiState.collectAsState().value
+    val uiState by viewModel.uiState.collectAsState()
     val isLandscape = LocalWindowInfo.current.containerSize.width > LocalWindowInfo.current.containerSize.height
 
     Scaffold(
@@ -73,7 +75,7 @@ fun MatchesScreen(
                     ) {
                         Column {
                             Text(
-                                text = uiState.error,
+                                text = uiState.error ?: stringResource(R.string.failed_to_load_matches),
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.error,
                             )

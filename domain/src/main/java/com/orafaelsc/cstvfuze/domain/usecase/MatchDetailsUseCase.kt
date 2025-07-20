@@ -6,6 +6,5 @@ import com.orafaelsc.cstvfuze.domain.repository.TeamDetailsRepository
 class MatchDetailsUseCase(
     private val teamDetailsRepository: TeamDetailsRepository,
 ) {
-    suspend operator fun invoke(teamId: String): Result<Team> =
-        teamDetailsRepository.getTeamDetails(teamId)
+    suspend operator fun invoke(teamId: String): Result<Team> = teamDetailsRepository.getTeamDetails(teamId)
 }

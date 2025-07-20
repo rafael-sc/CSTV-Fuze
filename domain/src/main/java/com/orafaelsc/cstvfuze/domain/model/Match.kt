@@ -1,6 +1,5 @@
 package com.orafaelsc.cstvfuze.domain.model
 
-
 data class Match(
     val id: Int,
     val firstTeam: Team,
@@ -11,6 +10,4 @@ data class Match(
     val status: MatchStatus,
 )
 
-fun Match.isLive(): Boolean {
-    return status == MatchStatus.RUNNING
-}
+fun Match.isLive(): Boolean = status == MatchStatus.RUNNING

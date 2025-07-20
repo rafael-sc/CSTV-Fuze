@@ -2,6 +2,7 @@ package com.orafaelsc.cstvfuze.data.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.orafaelsc.cstvfuze.data.remote.MatchesApi
+import com.orafaelsc.cstvfuze.data.remote.TeamsApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -41,8 +42,11 @@ val networkModule = module {
             .build()
     }
 
-    single {
+    single<MatchesApi> {
         get<Retrofit>().create(MatchesApi::class.java)
     }
-}
 
+    single<TeamsApi> {
+        get<Retrofit>().create(TeamsApi::class.java)
+    }
+}

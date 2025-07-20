@@ -75,35 +75,7 @@ fun MatchCard(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Teams section
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                // Team 1
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.weight(1f),
-                ) {
-                    TeamItem(teamName = match.firstTeam.name, teamLogoUrl = match.firstTeam.iconUrl)
-                }
-
-                // VS
-                Text(
-                    text = "vs",
-                    color = ExtendedColors.Default.textSecondary,
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                )
-
-                // Team 2
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.weight(1f),
-                ) {
-                    TeamItem(teamName = match.secondTeam.name, teamLogoUrl = match.secondTeam.iconUrl)
-                }
-            }
+            MatchHeader(match)
 
             // add a white line
             Spacer(modifier = Modifier.height(8.dp))

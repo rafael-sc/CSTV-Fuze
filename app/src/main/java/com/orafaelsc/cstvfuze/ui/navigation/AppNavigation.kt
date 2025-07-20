@@ -1,7 +1,10 @@
 package com.orafaelsc.cstvfuze.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,6 +17,8 @@ fun AppNavigation(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
+    val matchSharedViewModel: MatchSharedViewModel = viewModel()
+
     NavHost(
         navController = navController,
         startDestination = "matches",
@@ -22,20 +27,25 @@ fun AppNavigation(
             MatchesScreen(
                 modifier = modifier,
                 onMatchClick = { match ->
-                    navController.navigate("match_details/${match.id}")
+                    matchSharedViewModel.selectMatch(match)
+                    navController.navigate("match_details")
                 },
             )
         }
 
-        composable("match_details/{matchId}") { backStackEntry ->
-            val matchId = backStackEntry.arguments?.getString("matchId")
-            MatchesDetailsScreen(
-                modifier = modifier,
-                matchId = matchId,
-                onBackClick = {
-                    navController.popBackStack()
-                },
-            )
+        composable("match_details") {
+            val selectedMatch by matchSharedViewModel.selectedMatch.collectAsState()
+
+            selectedMatch?.let { match ->
+                MatchesDetailsScreen(
+                    modifier = modifier,
+                    match = match,
+                    onBackClick = {
+                        matchSharedViewModel.clearSelectedMatch()
+                        navController.popBackStack()
+                    },
+                )
+            }
         }
     }
 }

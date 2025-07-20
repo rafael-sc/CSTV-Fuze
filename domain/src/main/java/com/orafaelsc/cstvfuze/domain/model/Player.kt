@@ -10,5 +10,5 @@ data class Player(
     val firstName: String,
     val lastName: String,
     val nationality: String,
-    val imageUrl: String?
+    val imageUrl: String?,
 )

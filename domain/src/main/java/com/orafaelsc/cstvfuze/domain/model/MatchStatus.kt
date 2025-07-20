@@ -4,4 +4,5 @@ enum class MatchStatus {
     RUNNING,
     FINISHED,
     NOT_STARTED,
+    UNKNOWN,
 }

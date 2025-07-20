@@ -20,17 +20,35 @@ fun MatchDto.toDomain(): Match {
         id = id,
         firstTeam = firstTeam,
         secondTeam = secondTeam,
-        startTime =  beginAt?.toLocalDate(),
+        startTime = beginAt?.toLocalDate(),
         description = league.name + " - " + serie.fullName,
-        starTimeText = beginAt ?: "Unknown",
+        starTimeText = getStartTime(beginAt),
         leagueLogo = league.imageUrl.orEmpty(),
-        status = when (status) {
-            "finished" -> MatchStatus.FINISHED
-            "live" -> MatchStatus.RUNNING
-            "not_started" -> MatchStatus.NOT_STARTED
-            else -> MatchStatus.NOT_STARTED
-        }
+        status = getStatus(status)
     )
+}
+
+private fun getStatus(status: String?): MatchStatus {
+    return when (status) {
+        "not_started" -> MatchStatus.NOT_STARTED
+        "running" -> MatchStatus.RUNNING
+        "finished" -> MatchStatus.FINISHED
+        else -> MatchStatus.UNKNOWN
+    }
+}
+
+private fun getStartTime(beginAt: String?): String {
+    return beginAt?.toLocalDate()?.run {
+        val now = LocalDateTime.now()
+        when {
+            now.isAfter(this) -> "AGORA"
+            now.isBefore(this) && this.isBefore(
+                LocalDateTime.now().plusDays(1)
+            ) -> "Hoje, " + DateTimeFormatter.ofPattern("HH:mm").format(this)
+            else -> DateTimeFormatter.ofPattern("EEE, HH:mm").format(this).replace(".", "")
+                .replaceFirstChar { it.uppercase() }
+        }
+    } ?: ""
 }
 
 

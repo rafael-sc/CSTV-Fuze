@@ -4,18 +4,22 @@ package com.orafaelsc.cstvfuze.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.orafaelsc.cstvfuze.domain.model.Match
+import com.orafaelsc.cstvfuze.domain.model.MatchStatus
+import com.orafaelsc.cstvfuze.domain.model.Team
 import com.orafaelsc.cstvfuze.domain.model.isLive
 
 @Composable
@@ -30,46 +34,26 @@ fun MatchCard(
             .clickable { onClick() }
             .padding(horizontal = 16.dp, vertical = 8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.DarkGray // todo set CardBackground from theme
+            containerColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         shape = RoundedCornerShape(12.dp)
     ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End,
+
+            ) {
+            TagComponent(
+                backgroundColor = if (match.isLive()) Color.Red else Color.DarkGray,
+                text = match.starTimeText,
+                textColor = if (match.isLive()) Color.White else Color.LightGray,
+            )
+        }
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
             // Header with live indicator and time
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (match.isLive()) {
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = Color.Red, // todo set LiveIndicator from theme
-                                shape = RoundedCornerShape(4.dp)
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            text = "AGORA",
-                            color = Color.White,
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                } else {
-                    Spacer(modifier = Modifier.width(1.dp))
-                }
-
-                Text(
-                    text = match.starTimeText,
-                    color = Color.LightGray, // todo set TextSecondary from theme
-                    fontSize = 12.sp
-                )
-            }
-
             Spacer(modifier = Modifier.height(16.dp))
 
             // Teams section
@@ -90,7 +74,7 @@ fun MatchCard(
                 Text(
                     text = "vs",
                     color = Color.LightGray, // todo set TextSecondary from theme,
-                    fontSize = 16.sp,
+                    fontSize = 18.sp,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
@@ -103,19 +87,27 @@ fun MatchCard(
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
+            //add a white line
+            Spacer(modifier = Modifier.height(8.dp))
+            HorizontalDivider(
+                modifier = Modifier.fillMaxWidth(),
+                thickness = 1.dp,
+                color = Color.White.copy(alpha = 0.3f)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
             // League info
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
+                AsyncImage(
                     modifier = Modifier
-                        .size(8.dp)
+                        .size(16.dp)
                         .background(
-                            color = Color.LightGray, // todo set TextSecondary from theme
+                            color = Color.LightGray,
                             shape = CircleShape
-                        )
+                        ),
+                    model = match.leagueLogo,
+                    contentDescription = "${match.description} logo"
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
@@ -128,3 +120,21 @@ fun MatchCard(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun PreviewMatchCard() {
+    val match = Match(
+        id = 1,
+        firstTeam = Team(id = 1, name = "Team A", iconUrl = "https://example.com/team_a.png"),
+        secondTeam = Team(id = 2, name = "Team B", iconUrl = "https://example.com/team_b.png"),
+        startTime = java.time.LocalDateTime.now(),
+        description = "League Match",
+        starTimeText = "Hoje, 12:00",
+        status = MatchStatus.RUNNING,
+        leagueLogo = "https://example.com/league_logo.png"
+    )
+    MatchCard(
+        match = match,
+        onClick = {}
+    )
+}

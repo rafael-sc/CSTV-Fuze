@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MatchesViewModel(
@@ -29,7 +30,7 @@ class MatchesViewModel(
             matchesUseCase()
                 .onStart {
                     Log.d("MatchesViewModel", "Fetching matches...")
-                    _uiState.value = _uiState.value.copy(isLoading = true, error = null)
+                    _uiState.update { it.copy(isLoading = true, error = null) }
                 }.catch { exception ->
                     Log.d("MatchesViewModel", "Error fetching matches: ${exception.message}")
                     _uiState.value =

@@ -7,8 +7,6 @@ data class Player(
     val active: Boolean,
     val role: String?,
     val modifiedAt: String,
-    val age: Int,
-    val birthday: String,
     val firstName: String,
     val lastName: String,
     val nationality: String,

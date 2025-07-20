@@ -11,8 +11,8 @@ import com.orafaelsc.cstvfuze.domain.model.Player
 import com.orafaelsc.cstvfuze.domain.model.Team
 
 fun MatchDto.toDomain(): Match {
-    val firstTeam = opponents.firstOrNull()?.opponent?.toDomain() ?: Team(0, "Unknown", null)
-    val secondTeam = opponents.getOrNull(1)?.opponent?.toDomain() ?: Team(0, "Unknown", null)
+    val firstTeam = opponents.firstOrNull()?.opponent?.toDomain() ?: Team(0, "To be defined", null)
+    val secondTeam = opponents.getOrNull(1)?.opponent?.toDomain() ?: Team(0, "To be defined", null)
 
     return Match(
         id = id,
@@ -39,15 +39,13 @@ fun LeagueDto.toDomain(): League = League(id, name, imageUrl)
 
 fun PlayerDto.toDomain(): Player = Player(
     id = id,
-    name = name,
-    slug = slug,
+    name = name.orEmpty(),
+    slug = slug.orEmpty(),
     active = active,
     role = role,
-    modifiedAt = modifiedAt,
-    age = age,
-    birthday = birthday,
-    firstName = firstName,
-    lastName = lastName,
+    modifiedAt = modifiedAt?:"",
+    firstName = firstName?: "",
+    lastName = lastName?: "",
     nationality = nationality,
     imageUrl = imageUrl,
 )

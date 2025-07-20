@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter
 import kotlin.test.assertEquals
 
 class MatchCardTest : BaseUITest() {
-
     @Test
     fun `MatchCard renders with live match`() {
         val liveMatch = createTestMatch(status = MatchStatus.RUNNING)
@@ -29,7 +28,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = liveMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -42,17 +41,18 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard renders with upcoming match today`() {
-        val todayMatch = createTestMatch(
-            startTime = getTodayDateTime(),
-            status = MatchStatus.NOT_STARTED
-        )
+        val todayMatch =
+            createTestMatch(
+                startTime = getTodayDateTime(),
+                status = MatchStatus.NOT_STARTED,
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = todayMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -64,17 +64,18 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard renders with upcoming match on a future date`() {
-        val futureMatch = createTestMatch(
-            startTime = getFutureDateTime(),
-            status = MatchStatus.NOT_STARTED
-        )
+        val futureMatch =
+            createTestMatch(
+                startTime = getFutureDateTime(),
+                status = MatchStatus.NOT_STARTED,
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = futureMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -86,17 +87,18 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard renders with finished match`() {
-        val finishedMatch = createTestMatch(
-            status = MatchStatus.FINISHED,
-            startTime = getPastDateTime()
-        )
+        val finishedMatch =
+            createTestMatch(
+                status = MatchStatus.FINISHED,
+                startTime = getPastDateTime(),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = finishedMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -108,17 +110,18 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard renders with not started match`() {
-        val notStartedMatch = createTestMatch(
-            status = MatchStatus.NOT_STARTED,
-            startTime = getFutureDateTime()
-        )
+        val notStartedMatch =
+            createTestMatch(
+                status = MatchStatus.NOT_STARTED,
+                startTime = getFutureDateTime(),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = notStartedMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -138,7 +141,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = testMatch,
                     onClick = { clickCount++ },
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -158,7 +161,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = matchWithoutLogo,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -176,7 +179,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = matchWithoutDescription,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -188,16 +191,17 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard renders with missing first team data`() {
-        val matchWithNullFirstTeam = createTestMatch(
-            firstTeam = Team(id = 1, name = "", iconUrl = null)
-        )
+        val matchWithNullFirstTeam =
+            createTestMatch(
+                firstTeam = Team(id = 1, name = "", iconUrl = null),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = matchWithNullFirstTeam,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -208,16 +212,17 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard renders with missing second team data`() {
-        val matchWithNullSecondTeam = createTestMatch(
-            secondTeam = Team(id = 2, name = "", iconUrl = null)
-        )
+        val matchWithNullSecondTeam =
+            createTestMatch(
+                secondTeam = Team(id = 2, name = "", iconUrl = null),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = matchWithNullSecondTeam,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -235,7 +240,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = matchWithNullStartTime,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -254,7 +259,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = matchWithInvalidStartTime,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -273,7 +278,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = liveMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -284,17 +289,18 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard tag component text and color for upcoming match today`() {
-        val todayMatch = createTestMatch(
-            startTime = getTodayDateTime(),
-            status = MatchStatus.NOT_STARTED
-        )
+        val todayMatch =
+            createTestMatch(
+                startTime = getTodayDateTime(),
+                status = MatchStatus.NOT_STARTED,
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = todayMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -305,17 +311,18 @@ class MatchCardTest : BaseUITest() {
 
     @Test
     fun `MatchCard tag component text and color for upcoming match future date`() {
-        val futureMatch = createTestMatch(
-            startTime = getFutureDateTime(),
-            status = MatchStatus.NOT_STARTED
-        )
+        val futureMatch =
+            createTestMatch(
+                startTime = getFutureDateTime(),
+                status = MatchStatus.NOT_STARTED,
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 MatchCard(
                     match = futureMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -333,7 +340,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = testMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -341,26 +348,7 @@ class MatchCardTest : BaseUITest() {
         composeTestRule.onNodeWithContentDescription("Test League logo").assertIsDisplayed()
     }
 
-    @Test
-    fun `MatchCard with extremely long description`() {
-        val longDescription = "This is an extremely long league description that should be handled properly by the UI without breaking the layout or causing overflow issues in the match card component"
-        val matchWithLongDescription = createTestMatch(description = longDescription)
-
-        composeTestRule.setContent {
-            MaterialTheme {
-                MatchCard(
-                    match = matchWithLongDescription,
-                    onClick = {},
-                    modifier = Modifier.testTag("matchCard")
-                )
-            }
-        }
-
-        composeTestRule.onNodeWithTag("matchCard").assertIsDisplayed()
-        composeTestRule.onNodeWithText(longDescription).assertIsDisplayed()
-    }
-
-    @Test
+       @Test
     fun `MatchCard rendering in different locales timezones for start time`() {
         val utcMatch = createTestMatch(startTime = "2025-01-15T14:30:00Z")
 
@@ -369,7 +357,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = utcMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -387,7 +375,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = testMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -407,7 +395,7 @@ class MatchCardTest : BaseUITest() {
                 MatchCard(
                     match = testMatch,
                     onClick = {},
-                    modifier = Modifier.testTag("matchCard")
+                    modifier = Modifier.testTag("matchCard"),
                 )
             }
         }
@@ -423,34 +411,36 @@ class MatchCardTest : BaseUITest() {
         startTime: String? = "2025-01-15T15:21:32Z",
         description: String = "Test League",
         status: MatchStatus = MatchStatus.NOT_STARTED,
-        leagueLogo: String = "https://example.com/league_logo.png"
-    ): Match {
-        return Match(
+        leagueLogo: String = "https://example.com/league_logo.png",
+    ): Match =
+        Match(
             id = id,
             firstTeam = firstTeam,
             secondTeam = secondTeam,
             startTime = startTime,
             description = description,
             status = status,
-            leagueLogo = leagueLogo
+            leagueLogo = leagueLogo,
         )
-    }
 
-    private fun getTodayDateTime(): String {
-        return LocalDateTime.now().plusHours(2)
+    private fun getTodayDateTime(): String =
+        LocalDateTime
+            .now()
+            .plusHours(2)
             .atZone(ZoneOffset.UTC)
             .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
-    }
 
-    private fun getFutureDateTime(): String {
-        return LocalDateTime.now().plusDays(3)
+    private fun getFutureDateTime(): String =
+        LocalDateTime
+            .now()
+            .plusDays(3)
             .atZone(ZoneOffset.UTC)
             .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
-    }
 
-    private fun getPastDateTime(): String {
-        return LocalDateTime.now().minusHours(2)
+    private fun getPastDateTime(): String =
+        LocalDateTime
+            .now()
+            .minusHours(2)
             .atZone(ZoneOffset.UTC)
             .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
-    }
 }

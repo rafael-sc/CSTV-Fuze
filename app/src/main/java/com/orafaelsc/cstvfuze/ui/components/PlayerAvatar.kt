@@ -21,28 +21,29 @@ import com.orafaelsc.cstvfuze.R
 fun PlayerAvatar(
     modifier: Modifier = Modifier,
     playerName: String,
-    playerAvatarUrl: String? = null
+    playerAvatarUrl: String? = null,
 ) {
     Box(
-        modifier = modifier
-            .size(60.dp)
-            .background(
-                color = Color.Gray,
-                shape = RoundedCornerShape(8.dp)
-            ),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .size(60.dp)
+                .background(
+                    color = Color.Gray,
+                    shape = RoundedCornerShape(8.dp),
+                ),
+        contentAlignment = Alignment.Center,
     ) {
         if (playerAvatarUrl.isNullOrEmpty().not()) {
             AsyncImage(
                 modifier = Modifier.fillMaxWidth(),
                 model = playerAvatarUrl,
-                contentDescription = "$playerName avatar"
+                contentDescription = "$playerName avatar",
             )
-        } else{
+        } else {
             Image(
                 modifier = Modifier.fillMaxWidth(),
                 painter = painterResource(id = R.drawable.img_team_placeholder),
-                contentDescription = "Default avatar"
+                contentDescription = "Default avatar",
             )
         }
     }
@@ -54,6 +55,6 @@ fun PlayerAvatarPreview() {
     PlayerAvatar(
         playerName = "Mike Jones",
         playerAvatarUrl = "",
-        modifier = Modifier.testTag("playerAvatar")
+        modifier = Modifier.testTag("playerAvatar"),
     )
 }

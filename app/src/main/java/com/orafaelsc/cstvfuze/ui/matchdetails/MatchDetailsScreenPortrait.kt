@@ -15,14 +15,15 @@ import com.orafaelsc.cstvfuze.ui.components.PlayersSection
 fun MatchDetailsScreenPortrait(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues,
-    match: Match
+    match: Match,
 ) {
     LazyColumn(
-        modifier = modifier
-            .padding(paddingValues)
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item {
             MatchHeader(match = match)
@@ -31,7 +32,7 @@ fun MatchDetailsScreenPortrait(
         item {
             PlayersSection(
                 team1Players = match.firstTeam.players.orEmpty(),
-                team2Players = match.secondTeam.players.orEmpty()
+                team2Players = match.secondTeam.players.orEmpty(),
             )
         }
     }

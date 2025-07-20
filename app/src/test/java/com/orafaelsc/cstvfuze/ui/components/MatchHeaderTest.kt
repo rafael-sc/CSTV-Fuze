@@ -4,19 +4,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
-import org.junit.Rule
 import org.junit.Test
 
 class MatchHeaderTest : BaseUITest() {
-
-
     @Test
     fun `MatchHeader basic rendering`() {
         val testMatch = createTestMatch()
@@ -25,7 +21,7 @@ class MatchHeaderTest : BaseUITest() {
             MaterialTheme {
                 MatchHeader(
                     modifier = Modifier.testTag("matchHeader"),
-                    match = testMatch
+                    match = testMatch,
                 )
             }
         }
@@ -38,10 +34,11 @@ class MatchHeaderTest : BaseUITest() {
 
     @Test
     fun `MatchHeader team names displayed`() {
-        val testMatch = createTestMatch(
-            firstTeam = Team(id = 1, name = "Warriors", iconUrl = "url1"),
-            secondTeam = Team(id = 2, name = "Dragons", iconUrl = "url2")
-        )
+        val testMatch =
+            createTestMatch(
+                firstTeam = Team(id = 1, name = "Warriors", iconUrl = "url1"),
+                secondTeam = Team(id = 2, name = "Dragons", iconUrl = "url2"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
@@ -74,7 +71,7 @@ class MatchHeaderTest : BaseUITest() {
             MaterialTheme {
                 MatchHeader(
                     match = testMatch,
-                    modifier = Modifier.testTag("matchHeader")
+                    modifier = Modifier.testTag("matchHeader"),
                 )
             }
         }
@@ -171,10 +168,11 @@ class MatchHeaderTest : BaseUITest() {
 
     @Test
     fun `MatchHeader with empty team names`() {
-        val testMatch = createTestMatch(
-            firstTeam = Team(id = 1, name = "", iconUrl = "url1"),
-            secondTeam = Team(id = 2, name = "", iconUrl = "url2")
-        )
+        val testMatch =
+            createTestMatch(
+                firstTeam = Team(id = 1, name = "", iconUrl = "url1"),
+                secondTeam = Team(id = 2, name = "", iconUrl = "url2"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
@@ -204,10 +202,11 @@ class MatchHeaderTest : BaseUITest() {
     fun `MatchHeader with very long team names`() {
         val longTeamName1 = "This is an extremely long team name that should be handled properly by the UI"
         val longTeamName2 = "Another very long team name that tests text wrapping and layout behavior"
-        val testMatch = createTestMatch(
-            firstTeam = Team(id = 1, name = longTeamName1, iconUrl = "url1"),
-            secondTeam = Team(id = 2, name = longTeamName2, iconUrl = "url2")
-        )
+        val testMatch =
+            createTestMatch(
+                firstTeam = Team(id = 1, name = longTeamName1, iconUrl = "url1"),
+                secondTeam = Team(id = 2, name = longTeamName2, iconUrl = "url2"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
@@ -224,10 +223,11 @@ class MatchHeaderTest : BaseUITest() {
     fun `MatchHeader with special characters in team names`() {
         val specialTeamName1 = "Team Émojis 🎮⚡"
         val specialTeamName2 = "Spéciàl Châractërs & Símböls"
-        val testMatch = createTestMatch(
-            firstTeam = Team(id = 1, name = specialTeamName1, iconUrl = "url1"),
-            secondTeam = Team(id = 2, name = specialTeamName2, iconUrl = "url2")
-        )
+        val testMatch =
+            createTestMatch(
+                firstTeam = Team(id = 1, name = specialTeamName1, iconUrl = "url1"),
+                secondTeam = Team(id = 2, name = specialTeamName2, iconUrl = "url2"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
@@ -242,10 +242,11 @@ class MatchHeaderTest : BaseUITest() {
 
     @Test
     fun `MatchHeader TeamItem integration test team logo`() {
-        val testMatch = createTestMatch(
-            firstTeam = Team(id = 1, name = "Logo Team 1", iconUrl = "https://example.com/logo1.png"),
-            secondTeam = Team(id = 2, name = "Logo Team 2", iconUrl = "https://example.com/logo2.png")
-        )
+        val testMatch =
+            createTestMatch(
+                firstTeam = Team(id = 1, name = "Logo Team 1", iconUrl = "https://example.com/logo1.png"),
+                secondTeam = Team(id = 2, name = "Logo Team 2", iconUrl = "https://example.com/logo2.png"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
@@ -278,16 +279,15 @@ class MatchHeaderTest : BaseUITest() {
         startTime: String? = "2025-01-15T15:21:32Z",
         description: String = "Test League",
         status: MatchStatus = MatchStatus.NOT_STARTED,
-        leagueLogo: String = "https://example.com/league_logo.png"
-    ): Match {
-        return Match(
+        leagueLogo: String = "https://example.com/league_logo.png",
+    ): Match =
+        Match(
             id = id,
             firstTeam = firstTeam,
             secondTeam = secondTeam,
             startTime = startTime,
             description = description,
             status = status,
-            leagueLogo = leagueLogo
+            leagueLogo = leagueLogo,
         )
-    }
 }

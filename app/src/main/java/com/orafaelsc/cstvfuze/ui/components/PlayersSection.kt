@@ -21,28 +21,29 @@ import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 fun PlayersSection(
     modifier: Modifier = Modifier,
     team1Players: List<Player>,
-    team2Players: List<Player>
+    team2Players: List<Player>,
 ) {
     val maxPlayerCount = maxOf(team1Players.size, team2Players.size)
 
     Column(
         modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         if (team1Players.isEmpty() && team2Players.isEmpty()) {
             Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
                 text = "Player list not available",
                 style = MaterialTheme.typography.bodyMedium,
-                color = ExtendedColors.Default.textPrimary
+                color = ExtendedColors.Default.textPrimary,
             )
         } else {
             repeat(maxPlayerCount) { index ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     // Team 1 player
                     Box(modifier = Modifier.weight(1f)) {
@@ -50,7 +51,7 @@ fun PlayersSection(
                             PlayerCard(
                                 modifier = Modifier,
                                 player = team1Players[index],
-                                showAvatarAtStart = false
+                                showAvatarAtStart = false,
                             )
                         } else {
                             // Empty space when team1 has fewer players
@@ -66,7 +67,7 @@ fun PlayersSection(
                             PlayerCard(
                                 modifier = Modifier,
                                 player = team2Players[index],
-                                showAvatarAtStart = true
+                                showAvatarAtStart = true,
                             )
                         } else {
                             // Empty space when team2 has fewer players
@@ -82,24 +83,26 @@ fun PlayersSection(
 @Preview
 @Composable
 fun PlayersSectionPreview() {
-    val basePlayer = Player(
-        id = 1321,
-        name = "JD",
-        slug = "JD",
-        active = true,
-        role = "AWP",
-        modifiedAt = "2023-10-01T12:00:00Z",
-        firstName = "John",
-        lastName = "Doe",
-        nationality = "nationality",
-        imageUrl = "https://example.com/jd.png"
-    )
+    val basePlayer =
+        Player(
+            id = 1321,
+            name = "JD",
+            slug = "JD",
+            active = true,
+            role = "AWP",
+            modifiedAt = "2023-10-01T12:00:00Z",
+            firstName = "John",
+            lastName = "Doe",
+            nationality = "nationality",
+            imageUrl = "https://example.com/jd.png",
+        )
 
     val team1Players = emptyList<Player>()
-    val team2Players = listOf(
-        basePlayer.copy(id = 1, name = "Player1"),
-        basePlayer.copy(id = 2, name = "Player2")
-    )
+    val team2Players =
+        listOf(
+            basePlayer.copy(id = 1, name = "Player1"),
+            basePlayer.copy(id = 2, name = "Player2"),
+        )
 
     PlayersSection(modifier = Modifier, team1Players, team2Players)
 }

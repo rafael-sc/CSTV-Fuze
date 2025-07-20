@@ -25,90 +25,87 @@ import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 fun PlayerCard(
     modifier: Modifier = Modifier,
     player: Player,
-    showAvatarAtStart: Boolean = true
+    showAvatarAtStart: Boolean = true,
 ) {
-    val shape = if (!showAvatarAtStart) {
-        RoundedCornerShape(
-            topStart = 0.dp,
-            topEnd = 12.dp,
-            bottomEnd = 12.dp,
-            bottomStart = 0.dp
-        )
-    } else {
-        RoundedCornerShape(
-            topStart = 12.dp,
-            topEnd = 0.dp,
-            bottomEnd = 0.dp,
-            bottomStart = 12.dp
-        )
-    }
+    val shape =
+        if (!showAvatarAtStart) {
+            RoundedCornerShape(
+                topStart = 0.dp,
+                topEnd = 12.dp,
+                bottomEnd = 12.dp,
+                bottomStart = 0.dp,
+            )
+        } else {
+            RoundedCornerShape(
+                topStart = 12.dp,
+                topEnd = 0.dp,
+                bottomEnd = 0.dp,
+                bottomStart = 12.dp,
+            )
+        }
 
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(60.dp)
-            .clip(shape)
-            .background(MaterialTheme.colorScheme.onPrimaryContainer)
-            .padding(vertical = 8.dp),
-
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .clip(shape)
+                .background(MaterialTheme.colorScheme.onPrimaryContainer)
+                .padding(vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         if (showAvatarAtStart) {
             PlayerAvatar(
                 playerName = player.name,
-                playerAvatarUrl = player.imageUrl
+                playerAvatarUrl = player.imageUrl,
             )
         }
 
         Column(
             modifier = Modifier.weight(1f),
-            horizontalAlignment = if (showAvatarAtStart) Alignment.Start else Alignment.End
+            horizontalAlignment = if (showAvatarAtStart) Alignment.Start else Alignment.End,
         ) {
             Text(
                 text = player.name,
                 color = ExtendedColors.Default.textPrimary,
                 fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
             Text(
                 text = player.firstName + " " + player.lastName,
                 color = ExtendedColors.Default.textSecondary,
                 fontSize = 12.sp,
-                maxLines = 1
+                maxLines = 1,
             )
         }
 
         if (!showAvatarAtStart) {
             PlayerAvatar(
                 playerName = player.slug,
-                playerAvatarUrl = player.imageUrl
+                playerAvatarUrl = player.imageUrl,
             )
         }
     }
 }
 
-
-
-
 @Preview
 @Composable
-fun PlayerCardPreview(
-
-) {
+fun PlayerCardPreview() {
     PlayerCard(
-        player = Player(
-            active = true,
-            id = 24106,
-            name = "junior",
-            role = null,
-            slug = "junior",
-            modifiedAt = "2025-07-19T17:13:13Z",
-            firstName = "Paytyn",
-            lastName = "Johnson",
-            nationality = "US",
-            imageUrl = "https://cdn.pandascore.co/images/player/image/24106/465px_junior_triumph.png"
-        ),
-        showAvatarAtStart = false
+        player =
+            Player(
+                active = true,
+                id = 24106,
+                name = "junior",
+                role = null,
+                slug = "junior",
+                modifiedAt = "2025-07-19T17:13:13Z",
+                firstName = "Paytyn",
+                lastName = "Johnson",
+                nationality = "US",
+                imageUrl = "https://cdn.pandascore.co/images/player/image/24106/465px_junior_triumph.png",
+            ),
+        showAvatarAtStart = false,
     )
 }

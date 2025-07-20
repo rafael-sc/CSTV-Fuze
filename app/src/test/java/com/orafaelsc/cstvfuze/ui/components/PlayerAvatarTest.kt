@@ -12,17 +12,15 @@ import org.junit.Before
 import org.junit.Test
 
 class PlayerAvatarTest : BaseUITest() {
-
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         TestCoilUtils.installFakeImageLoader(
             context = context,
             interceptMap = mapOf("https://example.com/avatar.jpg" to 0xFF00FF00.toInt()),
-            defaultColor = 0xFFFF0000.toInt()
+            defaultColor = 0xFFFF0000.toInt(),
         )
     }
-
 
     @Test
     fun `PlayerAvatar with valid URL and name`() {
@@ -34,7 +32,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     modifier = Modifier.testTag("playerAvatar"),
                     playerName = playerName,
-                    playerAvatarUrl = playerAvatarUrl
+                    playerAvatarUrl = playerAvatarUrl,
                 )
             }
         }
@@ -52,7 +50,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = null,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -70,7 +68,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = "",
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -88,7 +86,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = "",
                     playerAvatarUrl = playerAvatarUrl,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -104,7 +102,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = "",
                     playerAvatarUrl = null,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -120,7 +118,7 @@ class PlayerAvatarTest : BaseUITest() {
             MaterialTheme {
                 PlayerAvatar(
                     playerName = "Test Player",
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -136,7 +134,7 @@ class PlayerAvatarTest : BaseUITest() {
             MaterialTheme {
                 PlayerAvatar(
                     playerName = "Centered Player",
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -156,7 +154,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = playerAvatarUrl,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -175,7 +173,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = null,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -196,7 +194,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = longPlayerName,
                     playerAvatarUrl = playerAvatarUrl,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -215,7 +213,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = invalidUrl,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -235,7 +233,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = networkErrorUrl,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -254,7 +252,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = null,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
@@ -274,9 +272,10 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = playerName,
                     playerAvatarUrl = null,
-                    modifier = Modifier
-                        .testTag("customPlayerAvatar")
-                        .testTag("additionalTag")
+                    modifier =
+                        Modifier
+                            .testTag("customPlayerAvatar")
+                            .testTag("additionalTag"),
                 )
             }
         }
@@ -295,13 +294,14 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = specialPlayerName,
                     playerAvatarUrl = playerAvatarUrl,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }
 
         composeTestRule.onNodeWithTag("playerAvatar").assertIsDisplayed()
-        composeTestRule.onNodeWithContentDescription("$specialPlayerName avatar")
+        composeTestRule
+            .onNodeWithContentDescription("$specialPlayerName avatar")
             .assertIsDisplayed()
     }
 
@@ -314,7 +314,7 @@ class PlayerAvatarTest : BaseUITest() {
                 PlayerAvatar(
                     playerName = whitespacePlayerName,
                     playerAvatarUrl = null,
-                    modifier = Modifier.testTag("playerAvatar")
+                    modifier = Modifier.testTag("playerAvatar"),
                 )
             }
         }

@@ -13,12 +13,10 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class CustomTopAppBarTest: BaseUITest() {
-
+class CustomTopAppBarTest : BaseUITest() {
     @Test
     fun `Default state rendering`() {
         composeTestRule.setContent {
@@ -38,7 +36,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Test Title",
-                    onBackClick = { clickCount++ }
+                    onBackClick = { clickCount++ },
                 )
             }
         }
@@ -55,7 +53,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Test Title",
-                    onBackClick = { clickCount++ }
+                    onBackClick = { clickCount++ },
                 )
             }
         }
@@ -83,7 +81,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Styled Title",
-                    modifier = Modifier.testTag("topAppBar")
+                    modifier = Modifier.testTag("topAppBar"),
                 )
             }
         }
@@ -111,7 +109,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "No Back Button",
-                    onBackClick = null
+                    onBackClick = null,
                 )
             }
         }
@@ -126,7 +124,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "With Back Button",
-                    onBackClick = {}
+                    onBackClick = {},
                 )
             }
         }
@@ -144,7 +142,7 @@ class CustomTopAppBarTest: BaseUITest() {
                 CustomTopAppBar(
                     title = "Test",
                     backButtonContentDescription = contentDescription,
-                    onBackClick = {}
+                    onBackClick = {},
                 )
             }
         }
@@ -159,7 +157,7 @@ class CustomTopAppBarTest: BaseUITest() {
                 CustomTopAppBar(
                     title = "Test",
                     backButtonContentDescription = null,
-                    onBackClick = {}
+                    onBackClick = {},
                 )
             }
         }
@@ -173,7 +171,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Test",
-                    onBackClick = {}
+                    onBackClick = {},
                 )
             }
         }
@@ -187,7 +185,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Background Test",
-                    modifier = Modifier.testTag("topAppBar")
+                    modifier = Modifier.testTag("topAppBar"),
                 )
             }
         }
@@ -223,7 +221,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Icon Color Test",
-                    onBackClick = {}
+                    onBackClick = {},
                 )
             }
         }
@@ -237,7 +235,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Modifier Test",
-                    modifier = Modifier.testTag("customModifier")
+                    modifier = Modifier.testTag("customModifier"),
                 )
             }
         }
@@ -265,7 +263,7 @@ class CustomTopAppBarTest: BaseUITest() {
                 CustomTopAppBar(
                     title = "No Back Button",
                     backButtonContentDescription = null,
-                    onBackClick = null
+                    onBackClick = null,
                 )
             }
         }
@@ -300,7 +298,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Test",
-                    onBackClick = onBackClick
+                    onBackClick = onBackClick,
                 )
             }
         }
@@ -320,7 +318,7 @@ class CustomTopAppBarTest: BaseUITest() {
             MaterialTheme {
                 CustomTopAppBar(
                     title = "Test",
-                    onBackClick = onBackClick
+                    onBackClick = onBackClick,
                 )
             }
         }

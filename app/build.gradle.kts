@@ -61,7 +61,6 @@ android {
     }
 }
 
-
 ktlint {
     android.set(true)
 }

@@ -7,7 +7,6 @@ import coil3.SingletonImageLoader
 import coil3.test.FakeImageLoaderEngine
 
 object TestCoilUtils {
-
     /**
      * Installs a fake Coil ImageLoader into the singleton with given URL mappings.
      *
@@ -18,7 +17,7 @@ object TestCoilUtils {
     fun installFakeImageLoader(
         context: Context,
         interceptMap: Map<String, Int>,
-        defaultColor: Int = 0xFF000000.toInt()
+        defaultColor: Int = 0xFF000000.toInt(),
     ) {
         val engineBuilder = FakeImageLoaderEngine.Builder()
         interceptMap.forEach { (url, color) ->
@@ -27,9 +26,11 @@ object TestCoilUtils {
         engineBuilder.default(ColorImage(defaultColor))
         val engine = engineBuilder.build()
 
-        val imageLoader = ImageLoader.Builder(context)
-            .components { add(engine) }
-            .build()
+        val imageLoader =
+            ImageLoader
+                .Builder(context)
+                .components { add(engine) }
+                .build()
 
         // Swap the singleton for Compose
         SingletonImageLoader.setSafe { imageLoader }

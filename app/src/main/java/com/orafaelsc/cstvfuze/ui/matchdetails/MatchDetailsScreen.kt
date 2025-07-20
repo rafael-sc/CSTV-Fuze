@@ -57,7 +57,7 @@ fun MatchesDetailsScreen(
                 MatchErrorContent(
                     paddingValues = paddingValues,
                     errorMessage = uiState.error.toString(),
-                    fallbackMatch = match
+                    fallbackMatch = match,
                 )
             }
 
@@ -76,17 +76,17 @@ fun MatchesDetailsScreen(
 @Composable
 private fun LoadingContent(
     paddingValues: PaddingValues,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier
-            .padding(paddingValues)
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .padding(paddingValues)
+                .fillMaxSize(),
+        contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }
-

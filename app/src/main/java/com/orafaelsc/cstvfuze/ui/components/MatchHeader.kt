@@ -22,14 +22,13 @@ import java.time.LocalDateTime
 @Composable
 fun MatchHeader(
     modifier: Modifier = Modifier,
-    match: Match
+    match: Match,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f),
@@ -44,7 +43,6 @@ fun MatchHeader(
             modifier = Modifier.padding(horizontal = 16.dp),
         )
 
-
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f),
@@ -58,22 +56,25 @@ fun MatchHeader(
 @Composable
 fun MatchHeaderPreview() {
     MatchHeader(
-        match = Match(
-            id = 1,
-            firstTeam = com.orafaelsc.cstvfuze.domain.model.Team(
+        match =
+            Match(
                 id = 1,
-                name = "Team A",
-                iconUrl = "https://example.com/team_a_logo.png"
+                firstTeam =
+                    com.orafaelsc.cstvfuze.domain.model.Team(
+                        id = 1,
+                        name = "Team A",
+                        iconUrl = "https://example.com/team_a_logo.png",
+                    ),
+                secondTeam =
+                    com.orafaelsc.cstvfuze.domain.model.Team(
+                        id = 2,
+                        name = "Team B",
+                        iconUrl = "https://example.com/team_b_logo.png",
+                    ),
+                startTime = LocalDateTime.now().toString(),
+                description = "Match between Team A and Team B",
+                leagueLogo = "https://example.com/league_logo.png",
+                status = MatchStatus.RUNNING,
             ),
-            secondTeam = com.orafaelsc.cstvfuze.domain.model.Team(
-                id = 2,
-                name = "Team B",
-                iconUrl = "https://example.com/team_b_logo.png"
-            ),
-            startTime = LocalDateTime.now().toString(),
-            description = "Match between Team A and Team B",
-            leagueLogo = "https://example.com/league_logo.png",
-            status = MatchStatus.RUNNING
-        )
     )
 }

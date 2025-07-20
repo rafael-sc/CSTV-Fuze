@@ -19,20 +19,21 @@ fun MatchErrorContent(
     paddingValues: PaddingValues,
     errorMessage: String,
     fallbackMatch: Match,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
-            .padding(paddingValues)
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier =
+            modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
         // Show error message
         Text(
             text = errorMessage,
             color = MaterialTheme.colorScheme.error,
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 16.dp),
         )
 
         // Still show the basic match info even on error
@@ -42,7 +43,7 @@ fun MatchErrorContent(
             text = stringResource(R.string.failed_to_load_team_details),
             color = ExtendedColors.Default.textSecondary,
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(top = 16.dp)
+            modifier = Modifier.padding(top = 16.dp),
         )
     }
 }

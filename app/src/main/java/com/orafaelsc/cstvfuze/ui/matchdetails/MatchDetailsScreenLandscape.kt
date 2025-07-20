@@ -25,57 +25,59 @@ import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 fun MatchDetailsScreenLandscape(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues,
-    match: Match
+    match: Match,
 ) {
     Row(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(paddingValues),
-        horizontalArrangement = Arrangement.spacedBy(24.dp)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+        horizontalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         // Left side - Match info and teams
         Column(
-            modifier = Modifier
-                .weight(0.4f)
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .weight(0.4f)
+                    .fillMaxHeight(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             MatchHeader(match = match)
         }
 
         // Right side - Players in two columns
         Row(
-            modifier = Modifier
-                .weight(0.6f)
-                .fillMaxHeight(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .weight(0.6f)
+                    .fillMaxHeight(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             // Team 1 players column
             PlayerColumnHorizontal(
                 modifier = Modifier.weight(1f),
                 teamName = match.firstTeam.name,
-                players = match.firstTeam.players.orEmpty()
+                players = match.firstTeam.players.orEmpty(),
             )
 
             // Team 2 players column
             PlayerColumnHorizontal(
                 modifier = Modifier.weight(1f),
                 teamName = match.secondTeam.name,
-                players = match.secondTeam.players.orEmpty()
+                players = match.secondTeam.players.orEmpty(),
             )
         }
     }
 }
 
-
 @Composable
 fun PlayerColumnHorizontal(
     teamName: String,
     players: List<Player>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier.fillMaxHeight()
+        modifier = modifier.fillMaxHeight(),
     ) {
         Text(
             text = teamName,
@@ -83,11 +85,11 @@ fun PlayerColumnHorizontal(
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 12.dp),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(players.size) {
                 PlayerCard(modifier = Modifier, player = players[it], showAvatarAtStart = true)

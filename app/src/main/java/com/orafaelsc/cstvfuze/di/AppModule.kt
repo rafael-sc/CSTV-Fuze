@@ -20,7 +20,7 @@ val appModule =
             )
         }
 
-        viewModel <MatchDetailsViewModel>{
+        viewModel<MatchDetailsViewModel> {
             MatchDetailsViewModel(
                 matchDetailsUseCase = get(),
                 resourceProvider = get(),

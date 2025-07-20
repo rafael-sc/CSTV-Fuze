@@ -7,15 +7,14 @@ import org.junit.Rule
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import kotlin.intArrayOf
 
 @RunWith(RobolectricTestRunner::class)
 @Config(
     sdk = [Build.VERSION_CODES.TIRAMISU],
     manifest = Config.NONE,
-    application = TestApplication::class
+    application = TestApplication::class,
 )
-open class BaseUITest(){
+open class BaseUITest {
     @get:Rule
     val composeTestRule = createComposeRule()
 }

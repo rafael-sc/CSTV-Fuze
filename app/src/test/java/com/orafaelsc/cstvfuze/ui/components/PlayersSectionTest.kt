@@ -15,35 +15,35 @@ import org.junit.Before
 import org.junit.Test
 
 class PlayersSectionTest : BaseUITest() {
-
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         TestCoilUtils.installFakeImageLoader(
             context = context,
             interceptMap = mapOf("https://example.com/avatar.jpg" to 0xFF00FF00.toInt()),
-            defaultColor = 0xFFFF0000.toInt()
+            defaultColor = 0xFFFF0000.toInt(),
         )
     }
 
-
     @Test
     fun `PlayersSection renders correctly with equal number of players`() {
-        val team1Players = listOf(
-            createTestPlayer(id = 1, name = "Player1", firstName = "John", lastName = "Doe"),
-            createTestPlayer(id = 2, name = "Player2", firstName = "Jane", lastName = "Smith")
-        )
-        val team2Players = listOf(
-            createTestPlayer(id = 3, name = "Player3", firstName = "Bob", lastName = "Wilson"),
-            createTestPlayer(id = 4, name = "Player4", firstName = "Alice", lastName = "Brown")
-        )
+        val team1Players =
+            listOf(
+                createTestPlayer(id = 1, name = "Player1", firstName = "John", lastName = "Doe"),
+                createTestPlayer(id = 2, name = "Player2", firstName = "Jane", lastName = "Smith"),
+            )
+        val team2Players =
+            listOf(
+                createTestPlayer(id = 3, name = "Player3", firstName = "Bob", lastName = "Wilson"),
+                createTestPlayer(id = 4, name = "Player4", firstName = "Alice", lastName = "Brown"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -61,21 +61,23 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection renders correctly when team 1 has more players`() {
-        val team1Players = listOf(
-            createTestPlayer(id = 1, name = "Player1"),
-            createTestPlayer(id = 2, name = "Player2"),
-            createTestPlayer(id = 3, name = "Player3")
-        )
-        val team2Players = listOf(
-            createTestPlayer(id = 4, name = "Player4")
-        )
+        val team1Players =
+            listOf(
+                createTestPlayer(id = 1, name = "Player1"),
+                createTestPlayer(id = 2, name = "Player2"),
+                createTestPlayer(id = 3, name = "Player3"),
+            )
+        val team2Players =
+            listOf(
+                createTestPlayer(id = 4, name = "Player4"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -89,21 +91,23 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection renders correctly when team 2 has more players`() {
-        val team1Players = listOf(
-            createTestPlayer(id = 1, name = "Player1")
-        )
-        val team2Players = listOf(
-            createTestPlayer(id = 2, name = "Player2"),
-            createTestPlayer(id = 3, name = "Player3"),
-            createTestPlayer(id = 4, name = "Player4")
-        )
+        val team1Players =
+            listOf(
+                createTestPlayer(id = 1, name = "Player1"),
+            )
+        val team2Players =
+            listOf(
+                createTestPlayer(id = 2, name = "Player2"),
+                createTestPlayer(id = 3, name = "Player3"),
+                createTestPlayer(id = 4, name = "Player4"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -125,7 +129,7 @@ class PlayersSectionTest : BaseUITest() {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -138,17 +142,18 @@ class PlayersSectionTest : BaseUITest() {
     @Test
     fun `PlayersSection renders correctly when team 1 is empty`() {
         val team1Players = emptyList<Player>()
-        val team2Players = listOf(
-            createTestPlayer(id = 1, name = "Player1"),
-            createTestPlayer(id = 2, name = "Player2")
-        )
+        val team2Players =
+            listOf(
+                createTestPlayer(id = 1, name = "Player1"),
+                createTestPlayer(id = 2, name = "Player2"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -160,10 +165,11 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection renders correctly when team 2 is empty`() {
-        val team1Players = listOf(
-            createTestPlayer(id = 1, name = "Player1"),
-            createTestPlayer(id = 2, name = "Player2")
-        )
+        val team1Players =
+            listOf(
+                createTestPlayer(id = 1, name = "Player1"),
+                createTestPlayer(id = 2, name = "Player2"),
+            )
         val team2Players = emptyList<Player>()
 
         composeTestRule.setContent {
@@ -171,7 +177,7 @@ class PlayersSectionTest : BaseUITest() {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -183,14 +189,15 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection PlayerCard content verification for team 1`() {
-        val team1Player = createTestPlayer(
-            id = 1,
-            name = "Team1Player",
-            firstName = "John",
-            lastName = "Doe",
-            slug = "team1-slug",
-            imageUrl = "https://example.com/team1player.png"
-        )
+        val team1Player =
+            createTestPlayer(
+                id = 1,
+                name = "Team1Player",
+                firstName = "John",
+                lastName = "Doe",
+                slug = "team1-slug",
+                imageUrl = "https://example.com/team1player.png",
+            )
         val team1Players = listOf(team1Player)
         val team2Players = emptyList<Player>()
 
@@ -199,7 +206,7 @@ class PlayersSectionTest : BaseUITest() {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -212,14 +219,15 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection PlayerCard content verification for team 2`() {
-        val team2Player = createTestPlayer(
-            id = 2,
-            name = "Team2Player",
-            firstName = "Jane",
-            lastName = "Smith",
-            slug = "team2-slug",
-            imageUrl = "https://example.com/team2player.png"
-        )
+        val team2Player =
+            createTestPlayer(
+                id = 2,
+                name = "Team2Player",
+                firstName = "Jane",
+                lastName = "Smith",
+                slug = "team2-slug",
+                imageUrl = "https://example.com/team2player.png",
+            )
         val team1Players = emptyList<Player>()
         val team2Players = listOf(team2Player)
 
@@ -228,7 +236,7 @@ class PlayersSectionTest : BaseUITest() {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -241,22 +249,24 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection layout verification with multiple players`() {
-        val team1Players = listOf(
-            createTestPlayer(id = 1, name = "T1P1"),
-            createTestPlayer(id = 2, name = "T1P2"),
-            createTestPlayer(id = 3, name = "T1P3")
-        )
-        val team2Players = listOf(
-            createTestPlayer(id = 4, name = "T2P1"),
-            createTestPlayer(id = 5, name = "T2P2")
-        )
+        val team1Players =
+            listOf(
+                createTestPlayer(id = 1, name = "T1P1"),
+                createTestPlayer(id = 2, name = "T1P2"),
+                createTestPlayer(id = 3, name = "T1P3"),
+            )
+        val team2Players =
+            listOf(
+                createTestPlayer(id = 4, name = "T2P1"),
+                createTestPlayer(id = 5, name = "T2P2"),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -280,7 +290,7 @@ class PlayersSectionTest : BaseUITest() {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -292,20 +302,22 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection handles players with null or empty fields gracefully`() {
-        val team1Players = listOf(
-            createTestPlayer(id = 1, name = "", firstName = "", lastName = "", imageUrl = null),
-            createTestPlayer(id = 2, name = "ValidPlayer", firstName = "Valid", lastName = "Player")
-        )
-        val team2Players = listOf(
-            createTestPlayer(id = 3, name = "AnotherPlayer", firstName = "", lastName = "", imageUrl = "")
-        )
+        val team1Players =
+            listOf(
+                createTestPlayer(id = 1, name = "", firstName = "", lastName = "", imageUrl = null),
+                createTestPlayer(id = 2, name = "ValidPlayer", firstName = "Valid", lastName = "Player"),
+            )
+        val team2Players =
+            listOf(
+                createTestPlayer(id = 3, name = "AnotherPlayer", firstName = "", lastName = "", imageUrl = ""),
+            )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -324,11 +336,12 @@ class PlayersSectionTest : BaseUITest() {
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
-                    modifier = Modifier
-                        .testTag("customPlayersSection")
-                        .testTag("additionalTag"),
+                    modifier =
+                        Modifier
+                            .testTag("customPlayersSection")
+                            .testTag("additionalTag"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -340,29 +353,31 @@ class PlayersSectionTest : BaseUITest() {
 
     @Test
     fun `PlayersSection accessibility checks`() {
-        val team1Players = listOf(
-            createTestPlayer(
-                id = 1,
-                name = "AccessiblePlayer1",
-                slug = "accessible1",
-                imageUrl = "https://example.com/player1.png"
+        val team1Players =
+            listOf(
+                createTestPlayer(
+                    id = 1,
+                    name = "AccessiblePlayer1",
+                    slug = "accessible1",
+                    imageUrl = "https://example.com/player1.png",
+                ),
             )
-        )
-        val team2Players = listOf(
-            createTestPlayer(
-                id = 2,
-                name = "AccessiblePlayer2",
-                slug = "accessible2",
-                imageUrl = "https://example.com/player2.png"
+        val team2Players =
+            listOf(
+                createTestPlayer(
+                    id = 2,
+                    name = "AccessiblePlayer2",
+                    slug = "accessible2",
+                    imageUrl = "https://example.com/player2.png",
+                ),
             )
-        )
 
         composeTestRule.setContent {
             MaterialTheme {
                 PlayersSection(
                     modifier = Modifier.testTag("playersSection"),
                     team1Players = team1Players,
-                    team2Players = team2Players
+                    team2Players = team2Players,
                 )
             }
         }
@@ -384,9 +399,9 @@ class PlayersSectionTest : BaseUITest() {
         firstName: String = "Test",
         lastName: String = "Player",
         nationality: String = "US",
-        imageUrl: String? = "https://example.com/player.png"
-    ): Player {
-        return Player(
+        imageUrl: String? = "https://example.com/player.png",
+    ): Player =
+        Player(
             id = id,
             name = name,
             slug = slug,
@@ -396,7 +411,6 @@ class PlayersSectionTest : BaseUITest() {
             firstName = firstName,
             lastName = lastName,
             nationality = nationality,
-            imageUrl = imageUrl
+            imageUrl = imageUrl,
         )
-    }
 }

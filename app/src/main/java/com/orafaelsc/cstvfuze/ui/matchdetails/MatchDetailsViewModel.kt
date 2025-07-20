@@ -20,6 +20,7 @@ class MatchDetailsViewModel(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(MatchDetailsState())
     val uiState: StateFlow<MatchDetailsState> = _uiState.asStateFlow()
+
     fun loadMatchData(match: Match) {
         if (_uiState.value.match != null) {
             return
@@ -39,20 +40,34 @@ class MatchDetailsViewModel(
                     _uiState.update { state ->
                         state.copy(
                             isLoading = false,
-                            match = state.match?.copy(
-                                firstTeam = if (state.match.firstTeam.id == team.id) teamDetails else state.match.firstTeam,
-                                secondTeam = if (state.match.secondTeam.id == team.id) teamDetails else state.match.secondTeam
-                            ),
-                            error = null
+                            match =
+                                state.match?.copy(
+                                    firstTeam =
+                                        if (state.match.firstTeam.id ==
+                                            team.id
+                                        ) {
+                                            teamDetails
+                                        } else {
+                                            state.match.firstTeam
+                                        },
+                                    secondTeam =
+                                        if (state.match.secondTeam.id ==
+                                            team.id
+                                        ) {
+                                            teamDetails
+                                        } else {
+                                            state.match.secondTeam
+                                        },
+                                ),
+                            error = null,
                         )
                     }
-                }
-                .onFailure { exception ->
+                }.onFailure { exception ->
                     Log.e("MatchDetailsViewModel", "Error fetching team details: ${exception.message}")
                     _uiState.update { state ->
                         state.copy(
                             isLoading = false,
-                            error = resourceProvider.getString(R.string.failed_to_load_team_details)
+                            error = resourceProvider.getString(R.string.failed_to_load_team_details),
                         )
                     }
                 }

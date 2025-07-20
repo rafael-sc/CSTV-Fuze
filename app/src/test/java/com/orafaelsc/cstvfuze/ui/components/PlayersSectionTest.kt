@@ -16,7 +16,6 @@ import org.junit.Test
 
 class PlayersSectionTest : BaseUITest() {
 
-
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext

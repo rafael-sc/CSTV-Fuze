@@ -20,9 +20,10 @@ class MatchDetailsViewModel(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(MatchDetailsState())
     val uiState: StateFlow<MatchDetailsState> = _uiState.asStateFlow()
-
     fun loadMatchData(match: Match) {
-        // Set the initial match in the state
+        if (_uiState.value.match != null) {
+            return
+        }
         _uiState.update { it.copy(match = match) }
 
         getTeamData(match.firstTeam)

@@ -7,19 +7,15 @@ import com.orafaelsc.cstvfuze.data.remote.dto.OpponentDto
 import com.orafaelsc.cstvfuze.data.remote.dto.SerieDto
 import com.orafaelsc.cstvfuze.data.remote.dto.TeamDto
 import com.orafaelsc.cstvfuze.data.remote.toDomain
-import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
-import com.orafaelsc.cstvfuze.domain.model.Team
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
-import java.time.LocalDateTime
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
@@ -28,7 +24,6 @@ class MatchesRepositoryTest {
 
     private lateinit var matchesApi: MatchesApi
     private lateinit var matchesRepository: MatchesRepositoryImpl
-    private val coroutineTestRule = kotlinx.coroutines.test.StandardTestDispatcher()
 
     private val sampleMatchDto = MatchDto(
         id = 1,

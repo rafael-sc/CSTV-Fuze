@@ -75,7 +75,7 @@ fun MatchCard(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Teams section
-            MatchHeader(match)
+            MatchHeader(modifier = Modifier, match)
 
             // add a white line
             Spacer(modifier = Modifier.height(8.dp))

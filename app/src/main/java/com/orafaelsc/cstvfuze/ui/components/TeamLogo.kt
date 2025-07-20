@@ -25,7 +25,7 @@ fun TeamItem(
         modifier = modifier.size(70.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        CreateTeamLogo(
+        TeamLogo(
             modifier = Modifier,
             teamName = teamName,
             teamLogoUrl = teamLogoUrl,
@@ -41,7 +41,7 @@ fun TeamItem(
 }
 
 @Composable
-private fun CreateTeamLogo(
+private fun TeamLogo(
     modifier: Modifier = Modifier,
     teamName: String,
     teamLogoUrl: String? = null,

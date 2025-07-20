@@ -3,6 +3,8 @@ package com.orafaelsc.cstvfuze.ui.matches
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.orafaelsc.cstvfuze.R
+import com.orafaelsc.cstvfuze.core.ResourceProvider
 import com.orafaelsc.cstvfuze.domain.usecase.MatchesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class MatchesViewModel(
     private val matchesUseCase: MatchesUseCase,
+    private val resourceProvider: ResourceProvider,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(MatchesState())
     val uiState: StateFlow<MatchesState> = _uiState.asStateFlow()
@@ -32,7 +35,7 @@ class MatchesViewModel(
                     _uiState.value =
                         _uiState.value.copy(
                             isLoading = false,
-                            error = exception.message ?: "Failed to load matches",
+                            error = resourceProvider.getString(R.string.failed_to_load_matches),
                         )
                 }.collect { matches ->
                     Log.d("MatchesViewModel", "Fetched matches: $matches")

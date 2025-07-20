@@ -1,5 +1,6 @@
 package com.orafaelsc.cstvfuze.ui.components
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,15 +23,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.orafaelsc.cstvfuze.R
 import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
 import com.orafaelsc.cstvfuze.domain.model.isLive
 import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun MatchCard(
@@ -38,6 +45,7 @@ fun MatchCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
     Card(
         modifier =
             modifier
@@ -51,14 +59,12 @@ fun MatchCard(
         shape = RoundedCornerShape(12.dp),
     ) {
         Row(
-            modifier =
-                Modifier
-                    .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End,
         ) {
             TagComponent(
                 backgroundColor = if (match.isLive()) Color.Red else Color.DarkGray,
-                text = match.starTimeText,
+                text = getStartTime(context, match.startTime),
                 textColor = if (match.isLive()) Color.White else Color.LightGray,
             )
         }
@@ -112,13 +118,12 @@ fun MatchCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 AsyncImage(
-                    modifier =
-                        Modifier
-                            .size(16.dp)
-                            .background(
-                                color = MaterialTheme.colorScheme.secondary,
-                                shape = CircleShape,
-                            ),
+                    modifier = Modifier
+                        .size(16.dp)
+                        .background(
+                            color = MaterialTheme.colorScheme.secondary,
+                            shape = CircleShape,
+                        ),
                     model = match.leagueLogo,
                     contentDescription = "${match.description} logo",
                 )
@@ -133,6 +138,30 @@ fun MatchCard(
     }
 }
 
+private fun getStartTime(context: Context, beginAt: String?): String {
+    val now = LocalDateTime.now()
+    return beginAt?.toLocalDate()?.let { startTime ->
+        when {
+            now.isAfter(startTime) -> context.getString(R.string.now)
+            startTime.isBefore(now.plusDays(1)) -> {
+                context.getString(R.string.today) + ", " + startTime.format(DateTimeFormatter.ofPattern("HH:mm"))
+            }
+
+            else -> startTime.format(DateTimeFormatter.ofPattern("EEE, HH:mm"))
+                .replace(".", "")
+                .replaceFirstChar { it.uppercase() }
+        }
+    } ?: ""
+}
+
+
+private fun String.toLocalDate(): LocalDateTime? {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+    val data = LocalDateTime.parse(this, formatter)
+    return data.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewMatchCard() {
@@ -141,9 +170,8 @@ fun PreviewMatchCard() {
             id = 1,
             firstTeam = Team(id = 1, name = "Team A", iconUrl = "https://example.com/team_a.png"),
             secondTeam = Team(id = 2, name = "Team B", iconUrl = "https://example.com/team_b.png"),
-            startTime = java.time.LocalDateTime.now(),
+            startTime = "2025-07-13T15:21:32Z",
             description = "League Match",
-            starTimeText = "Hoje, 12:00",
             status = MatchStatus.RUNNING,
             leagueLogo = "https://example.com/league_logo.png",
         )

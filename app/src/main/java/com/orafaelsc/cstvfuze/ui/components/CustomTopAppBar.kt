@@ -19,12 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.orafaelsc.cstvfuze.core.ResourceProvider
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomTopAppBar(
     modifier: Modifier = Modifier,
     title: String,
+    backButtonContentDescription: String? = null,
     onBackClick: (() -> Unit)? = null,
 ) {
     TopAppBar(
@@ -50,7 +52,7 @@ fun CustomTopAppBar(
                 IconButton(onClick = onBackClick) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = backButtonContentDescription.orEmpty(),
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }

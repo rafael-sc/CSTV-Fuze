@@ -1,8 +1,6 @@
 package com.orafaelsc.cstvfuze.core
 
 interface ResourceProvider {
-    fun getString(
-        id: Int,
-        vararg params: Any,
-    ): String
+    fun getString(resId: Int): String
+    fun getString(resId: Int, vararg formatArgs: Any): String
 }

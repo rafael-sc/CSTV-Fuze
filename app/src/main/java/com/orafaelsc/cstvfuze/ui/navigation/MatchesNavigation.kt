@@ -19,6 +19,7 @@ fun MatchesNavigation(
     ) {
         composable("matches") {
             MatchesScreen(
+                modifier = modifier,
                 onMatchClick = { match ->
                     navController.navigate("match_details/${match.id}")
                 },

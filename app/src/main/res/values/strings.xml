@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CSTV - Fuze.cc</string>
+    <string name="failed_to_load_matches">Failed to load matches.\n\nCheck your internet connection and try again.</string>
+    <string name="matches">Matches</string>
+    <string name="retry">Retry</string>
+    <string name="now">NOW</string>
+    <string name="today">"Today"</string>
 </resources>

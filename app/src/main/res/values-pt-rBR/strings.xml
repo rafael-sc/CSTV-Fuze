@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CSTV - Fuze.cc</string>
+    <string name="failed_to_load_matches">Não foi possível encontrar as partidas.\n\nVerifique sua conexão com a internet e tente novamente</string>
+    <string name="matches">Partidas</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="now">AGORA</string>
+    <string name="today">Hoje</string>
+</resources>

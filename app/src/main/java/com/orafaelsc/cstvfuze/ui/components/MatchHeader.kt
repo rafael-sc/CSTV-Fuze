@@ -18,9 +18,12 @@ import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 import java.time.LocalDateTime
 
 @Composable
-fun MatchHeader(match: Match){
+fun MatchHeader(
+    modifier: Modifier = Modifier,
+    match: Match
+) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
     ) {

@@ -22,9 +22,9 @@ internal fun MatchesPortrait(
     ) {
         items(matches.size) { index ->
             MatchCard(
+                modifier = Modifier.fillMaxSize(),
                 match = matches[index],
                 onClick = { onMatchClick(matches[index]) },
-                modifier = Modifier.fillMaxSize(),
             )
         }
     }

@@ -41,9 +41,9 @@ import java.time.format.DateTimeFormatter
 
 @Composable
 fun MatchCard(
+    modifier: Modifier = Modifier,
     match: Match,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     Card(

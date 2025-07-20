@@ -10,7 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.orafaelsc.cstvfuze.R
@@ -30,18 +32,28 @@ fun PlayerAvatar(
             ),
         contentAlignment = Alignment.Center
     ) {
-        if (playerAvatarUrl != null) {
+        if (playerAvatarUrl.isNullOrEmpty().not()) {
             AsyncImage(
+                modifier = Modifier.fillMaxWidth(),
                 model = playerAvatarUrl,
-                contentDescription = "$playerName avatar",
-                modifier = Modifier.fillMaxWidth()
+                contentDescription = "$playerName avatar"
             )
-        } else if (playerName.isNotEmpty()) {
+        } else{
             Image(
+                modifier = Modifier.fillMaxWidth(),
                 painter = painterResource(id = R.drawable.img_team_placeholder),
-                contentDescription = "Default avatar",
-                modifier = Modifier.fillMaxWidth()
+                contentDescription = "Default avatar"
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun PlayerAvatarPreview() {
+    PlayerAvatar(
+        playerName = "Mike Jones",
+        playerAvatarUrl = "",
+        modifier = Modifier.testTag("playerAvatar")
+    )
 }

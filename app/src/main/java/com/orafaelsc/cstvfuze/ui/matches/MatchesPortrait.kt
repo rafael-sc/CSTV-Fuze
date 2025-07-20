@@ -13,7 +13,7 @@ import com.orafaelsc.cstvfuze.ui.components.MatchCard
 @Composable
 internal fun MatchesPortrait(
     matches: List<Match>,
-    onMatchClick: (Match) -> Unit
+    onMatchClick: (Match) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),

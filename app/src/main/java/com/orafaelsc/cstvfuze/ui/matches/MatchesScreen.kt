@@ -25,7 +25,6 @@ import com.orafaelsc.cstvfuze.ui.components.CustomTopAppBar
 import com.orafaelsc.cstvfuze.ui.components.PullToRefreshBox
 import org.koin.androidx.compose.koinViewModel
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MatchesScreen(
@@ -48,16 +47,18 @@ fun MatchesScreen(
         PullToRefreshBox(
             isRefreshing = uiState.isLoading,
             onRefresh = { viewModel.fetchMatches() },
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize(),
+            modifier =
+                Modifier
+                    .padding(paddingValues)
+                    .fillMaxSize(),
         ) {
             when {
                 uiState.isLoading -> {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         CircularProgressIndicator(
@@ -68,9 +69,10 @@ fun MatchesScreen(
 
                 uiState.error != null -> {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Column {
@@ -97,12 +99,12 @@ fun MatchesScreen(
                     if (isLandscape) {
                         MatchesLandscape(
                             matches = uiState.matches,
-                            onMatchClick = onMatchClick
+                            onMatchClick = onMatchClick,
                         )
                     } else {
                         MatchesPortrait(
                             matches = uiState.matches,
-                            onMatchClick = onMatchClick
+                            onMatchClick = onMatchClick,
                         )
                     }
                 }

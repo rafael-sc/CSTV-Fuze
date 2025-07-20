@@ -54,7 +54,7 @@ private fun TeamLogo(
         )
     } else {
         Text(
-            text = teamName.replaceFirstChar{it.uppercase()},
+            text = teamName.replaceFirstChar { it.uppercase() },
             modifier = modifier,
             color = ExtendedColors.Default.textSecondary,
             fontWeight = FontWeight.Bold,

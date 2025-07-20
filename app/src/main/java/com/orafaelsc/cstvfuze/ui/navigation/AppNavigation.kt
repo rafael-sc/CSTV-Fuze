@@ -34,7 +34,7 @@ fun AppNavigation(
                 matchId = matchId,
                 onBackClick = {
                     navController.popBackStack()
-                }
+                },
             )
         }
     }

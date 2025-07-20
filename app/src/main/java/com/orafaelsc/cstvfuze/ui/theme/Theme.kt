@@ -15,9 +15,7 @@ private val DarkColorScheme =
     )
 
 @Composable
-fun CSTVFuzeccTheme(
-    content: @Composable () -> Unit,
-) {
+fun CSTVFuzeccTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = DarkColorScheme,
         typography = Typography,

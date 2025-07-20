@@ -17,7 +17,6 @@ class MatchesViewModel(
     private val matchesUseCase: MatchesUseCase,
     private val resourceProvider: ResourceProvider,
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow(MatchesState())
     val uiState: StateFlow<MatchesState> = _uiState.asStateFlow()
 

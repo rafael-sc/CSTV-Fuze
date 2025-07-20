@@ -118,12 +118,13 @@ fun MatchCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 AsyncImage(
-                    modifier = Modifier
-                        .size(16.dp)
-                        .background(
-                            color = MaterialTheme.colorScheme.secondary,
-                            shape = CircleShape,
-                        ),
+                    modifier =
+                        Modifier
+                            .size(16.dp)
+                            .background(
+                                color = MaterialTheme.colorScheme.secondary,
+                                shape = CircleShape,
+                            ),
                     model = match.leagueLogo,
                     contentDescription = "${match.description} logo",
                 )
@@ -138,7 +139,10 @@ fun MatchCard(
     }
 }
 
-private fun getStartTime(context: Context, beginAt: String?): String {
+private fun getStartTime(
+    context: Context,
+    beginAt: String?,
+): String {
     val now = LocalDateTime.now()
     return beginAt?.toLocalDate()?.let { startTime ->
         when {
@@ -147,20 +151,20 @@ private fun getStartTime(context: Context, beginAt: String?): String {
                 context.getString(R.string.today) + ", " + startTime.format(DateTimeFormatter.ofPattern("HH:mm"))
             }
 
-            else -> startTime.format(DateTimeFormatter.ofPattern("EEE, HH:mm"))
-                .replace(".", "")
-                .replaceFirstChar { it.uppercase() }
+            else ->
+                startTime
+                    .format(DateTimeFormatter.ofPattern("EEE, HH:mm"))
+                    .replace(".", "")
+                    .replaceFirstChar { it.uppercase() }
         }
     } ?: ""
 }
-
 
 private fun String.toLocalDate(): LocalDateTime? {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
     val data = LocalDateTime.parse(this, formatter)
     return data.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
 }
-
 
 @Preview(showBackground = true)
 @Composable

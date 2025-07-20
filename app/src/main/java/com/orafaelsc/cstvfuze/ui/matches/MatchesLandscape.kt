@@ -14,7 +14,7 @@ import com.orafaelsc.cstvfuze.ui.components.MatchCard
 @Composable
 internal fun MatchesLandscape(
     matches: List<Match>,
-    onMatchClick: (Match) -> Unit
+    onMatchClick: (Match) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),

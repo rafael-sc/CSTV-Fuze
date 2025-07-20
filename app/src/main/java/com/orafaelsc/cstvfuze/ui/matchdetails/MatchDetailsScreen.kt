@@ -19,8 +19,8 @@ import com.orafaelsc.cstvfuze.ui.components.CustomTopAppBar
 fun MatchesDetailsScreen(
     modifier: Modifier,
     matchId: String? = null,
-    onBackClick: () -> Unit = { }
-){
+    onBackClick: () -> Unit = { },
+) {
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -29,15 +29,15 @@ fun MatchesDetailsScreen(
                 title = stringResource(R.string.match_details),
                 backButtonContentDescription = stringResource(R.string.match_details_back_description),
                 onBackClick = onBackClick,
-
             )
         },
     ) { paddingValues ->
         Text(
-            text = stringResource(R.string.match_details) + matchId ,
-            modifier = Modifier
-                .padding(paddingValues)
-                .padding(16.dp),
+            text = stringResource(R.string.match_details) + matchId,
+            modifier =
+                Modifier
+                    .padding(paddingValues)
+                    .padding(16.dp),
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface,
         )

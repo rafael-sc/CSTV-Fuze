@@ -10,7 +10,7 @@ import com.orafaelsc.cstvfuze.domain.model.Team
 
 fun MatchDto.toDomain(): Match {
     val firstTeam = opponents.firstOrNull()?.opponent?.toDomain() ?: Team(0, "Unknown", null)
-    val secondTeam = opponents.firstOrNull()?.opponent?.toDomain() ?: Team(0, "Unknown", null)
+    val secondTeam = opponents.getOrNull(1)?.opponent?.toDomain() ?: Team(0, "Unknown", null)
 
     return Match(
         id = id,

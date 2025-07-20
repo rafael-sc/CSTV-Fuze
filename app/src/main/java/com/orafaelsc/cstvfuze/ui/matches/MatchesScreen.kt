@@ -1,13 +1,10 @@
 package com.orafaelsc.cstvfuze.ui.matches
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -18,12 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orafaelsc.cstvfuze.R
 import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.ui.components.CustomTopAppBar
-import com.orafaelsc.cstvfuze.ui.components.MatchCard
 import com.orafaelsc.cstvfuze.ui.components.PullToRefreshBox
 import org.koin.androidx.compose.koinViewModel
 
@@ -35,7 +32,7 @@ fun MatchesScreen(
     onMatchClick: (Match) -> Unit,
 ) {
     val uiState = viewModel.uiState.collectAsState().value
-    val isLoading = uiState.isLoading
+    val isLandscape = LocalWindowInfo.current.containerSize.width > LocalWindowInfo.current.containerSize.height
 
     Scaffold(
         modifier = modifier,
@@ -46,17 +43,15 @@ fun MatchesScreen(
             )
         },
     ) { paddingValues ->
-
         PullToRefreshBox(
-            isRefreshing = isLoading,
+            isRefreshing = uiState.isLoading,
             onRefresh = { viewModel.fetchMatches() },
-            modifier =
-                Modifier
-                    .padding(paddingValues)
-                    .fillMaxSize(),
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize(),
         ) {
             when {
-                isLoading -> {
+                uiState.isLoading -> {
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
@@ -93,23 +88,20 @@ fun MatchesScreen(
                                 )
                             }
                         }
-
                     }
                 }
 
                 else -> {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                    ) {
-                        items(uiState.matches.size) { index ->
-                            MatchCard(
-                                match = uiState.matches[index],
-                                onClick = { onMatchClick(uiState.matches[index]) },
-                                modifier = Modifier.fillMaxSize(),
-                            )
-                        }
+                    if (isLandscape) {
+                        MatchesLandscape(
+                            matches = uiState.matches,
+                            onMatchClick = onMatchClick
+                        )
+                    } else {
+                        MatchesPortrait(
+                            matches = uiState.matches,
+                            onMatchClick = onMatchClick
+                        )
                     }
                 }
             }

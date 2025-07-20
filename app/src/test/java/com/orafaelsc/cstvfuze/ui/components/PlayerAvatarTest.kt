@@ -11,7 +11,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Before
 import org.junit.Test
 
-class PlayerAvatarKtTest : BaseUITest() {
+class PlayerAvatarTest : BaseUITest() {
 
     @Before
     fun setup() {

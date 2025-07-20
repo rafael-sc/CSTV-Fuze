@@ -10,14 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.orafaelsc.cstvfuze.domain.model.Player
 
 @Composable
 fun PlayersSection(
+    modifier: Modifier = Modifier,
     team1Players: List<Player>,
-    team2Players: List<Player>,
-    modifier: Modifier = Modifier
+    team2Players: List<Player>
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
@@ -54,4 +55,36 @@ fun PlayersSection(
             }
         }
     }
+}
+
+
+@Preview
+@Composable
+fun PlayersSectionPreview() {
+
+    val basePlayer = Player(
+        id = 1321,
+        name = "JD",
+        slug = "JD",
+        active = true,
+        role = "AWP",
+        modifiedAt = "2023-10-01T12:00:00Z" ,
+        firstName = "John",
+        lastName = "Doe",
+        nationality = "nationality",
+        imageUrl = "https://example.com/jd.png"
+    )
+
+    val team1Players = listOf(
+        basePlayer.copy(name = "Player 1", firstName = "Diogo", lastName = "Alves", imageUrl = "https://example.com/player1.png"),
+        basePlayer.copy(name = "Player 2", imageUrl = "https://example.com/player2.png"),
+    )
+    val team2Players = listOf(
+        basePlayer.copy(name = "Player 3", imageUrl = "https://example.com/player3.png"),
+        basePlayer.copy(name = "Player 4", imageUrl = "https://example.com/player4.png"),
+    )
+
+
+
+    PlayersSection(modifier = Modifier, team1Players, team2Players)
 }

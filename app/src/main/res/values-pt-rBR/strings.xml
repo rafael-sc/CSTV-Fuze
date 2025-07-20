@@ -5,4 +5,8 @@
     <string name="retry">Tentar novamente</string>
     <string name="now">AGORA</string>
     <string name="today">Hoje</string>
+    <string name="back">Voltar</string>
+    <string name="match_details_back_description">Voltar a lista de partidas</string>
+    <string name="match_details">Detailhes da partida</string>
+
 </resources>

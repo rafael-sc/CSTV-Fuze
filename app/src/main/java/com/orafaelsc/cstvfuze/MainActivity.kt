@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.orafaelsc.cstvfuze.ui.navigation.MatchesNavigation
+import com.orafaelsc.cstvfuze.ui.navigation.AppNavigation
 import com.orafaelsc.cstvfuze.ui.theme.CSTVFuzeccTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CSTVFuzeccTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MatchesNavigation(modifier = Modifier.padding(innerPadding))
+                    AppNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

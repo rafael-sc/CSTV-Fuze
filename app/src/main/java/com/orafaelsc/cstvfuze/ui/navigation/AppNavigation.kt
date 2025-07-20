@@ -6,10 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.orafaelsc.cstvfuze.ui.matchdetails.MatchesDetailsScreen
 import com.orafaelsc.cstvfuze.ui.matches.MatchesScreen
 
 @Composable
-fun MatchesNavigation(
+fun AppNavigation(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
@@ -23,6 +24,17 @@ fun MatchesNavigation(
                 onMatchClick = { match ->
                     navController.navigate("match_details/${match.id}")
                 },
+            )
+        }
+
+        composable("match_details/{matchId}") { backStackEntry ->
+            val matchId = backStackEntry.arguments?.getString("matchId")
+            MatchesDetailsScreen(
+                modifier = modifier,
+                matchId = matchId,
+                onBackClick = {
+                    navController.popBackStack()
+                }
             )
         }
     }

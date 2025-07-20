@@ -133,9 +133,15 @@ private fun getStartTime(
 }
 
 private fun String.toLocalDate(): LocalDateTime? {
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-    val data = LocalDateTime.parse(this, formatter)
-    return data.atZone(ZoneOffset.UTC).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
+    return try {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        val data = LocalDateTime.parse(this, formatter)
+        data.atZone(ZoneOffset.UTC)
+            .withZoneSameInstant(ZoneId.systemDefault())
+            .toLocalDateTime()
+    } catch (_: Exception) {
+        null
+    }
 }
 
 @Preview(showBackground = true)

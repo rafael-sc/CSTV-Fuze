@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -13,7 +12,6 @@ import androidx.compose.ui.test.performClick
 import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
-import org.junit.Rule
 import org.junit.Test
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -21,9 +19,6 @@ import java.time.format.DateTimeFormatter
 import kotlin.test.assertEquals
 
 class MatchCardTest : BaseUITest() {
-
-    @get:Rule
-    val composeTestRule = createComposeRule()
 
     @Test
     fun `MatchCard renders with live match`() {

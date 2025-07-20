@@ -8,6 +8,6 @@ import retrofit2.http.Path
 interface TeamsApi {
     @GET("teams/{team_id}")
     suspend fun getTeamDetails(
-        @Path("team_id") teamId: String
+        @Path("team_id") teamId: String,
     ): Response<TeamDto>
 }

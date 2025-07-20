@@ -6,15 +6,16 @@ import com.orafaelsc.cstvfuze.domain.repository.MatchesRepository
 import com.orafaelsc.cstvfuze.domain.repository.TeamDetailsRepository
 import org.koin.dsl.module
 
-val dataModule = module {
-    single<MatchesRepository> {
-        MatchesRepositoryImpl(
-            matchesAPI = get()
-        )
+val dataModule =
+    module {
+        single<MatchesRepository> {
+            MatchesRepositoryImpl(
+                matchesAPI = get(),
+            )
+        }
+        single<TeamDetailsRepository> {
+            TeamDetailsRepositoryImpl(
+                teamApi = get(),
+            )
+        }
     }
-    single<TeamDetailsRepository> {
-        TeamDetailsRepositoryImpl(
-            teamApi = get()
-        )
-    }
-}

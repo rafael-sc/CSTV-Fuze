@@ -59,7 +59,6 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.kotlin.serialization.json)
 
-
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
 

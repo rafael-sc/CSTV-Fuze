@@ -4,13 +4,11 @@ import com.orafaelsc.cstvfuze.data.remote.toDomain
 import com.orafaelsc.cstvfuze.domain.model.Team
 import com.orafaelsc.cstvfuze.domain.repository.TeamDetailsRepository
 
-
 class TeamDetailsRepositoryImpl(
     private val teamApi: TeamsApi,
 ) : TeamDetailsRepository {
-
-    override suspend fun getTeamDetails(teamId: String): Result<Team> {
-        return try {
+    override suspend fun getTeamDetails(teamId: String): Result<Team> =
+        try {
             val response = teamApi.getTeamDetails(teamId)
             if (response.isSuccessful) {
                 val teamDto = response.body()
@@ -25,5 +23,4 @@ class TeamDetailsRepositoryImpl(
         } catch (e: Exception) {
             Result.failure(e)
         }
-    }
 }

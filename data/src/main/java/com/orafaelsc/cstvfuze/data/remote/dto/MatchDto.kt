@@ -11,5 +11,5 @@ data class MatchDto(
     val status: String,
     val opponents: List<OpponentDto>,
     val league: LeagueDto,
-    val serie: SerieDto
+    val serie: SerieDto,
 )

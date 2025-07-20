@@ -21,33 +21,32 @@ fun MatchDto.toDomain(): Match {
         startTime = beginAt,
         description = league.name + " - " + serie.fullName,
         leagueLogo = league.imageUrl.orEmpty(),
-        status = getStatus(status)
+        status = getStatus(status),
     )
 }
 
-private fun getStatus(status: String?): MatchStatus {
-    return when (status) {
+private fun getStatus(status: String?): MatchStatus =
+    when (status) {
         "not_started" -> MatchStatus.NOT_STARTED
         "running" -> MatchStatus.RUNNING
         "finished" -> MatchStatus.FINISHED
         else -> MatchStatus.UNKNOWN
     }
-}
-
 
 fun LeagueDto.toDomain(): League = League(id, name, imageUrl)
 
-fun PlayerDto.toDomain(): Player = Player(
-    id = id,
-    name = name.orEmpty(),
-    slug = slug.orEmpty(),
-    active = active,
-    role = role,
-    modifiedAt = modifiedAt?:"",
-    firstName = firstName?: "",
-    lastName = lastName?: "",
-    nationality = nationality,
-    imageUrl = imageUrl,
-)
+fun PlayerDto.toDomain(): Player =
+    Player(
+        id = id,
+        name = name.orEmpty(),
+        slug = slug.orEmpty(),
+        active = active,
+        role = role,
+        modifiedAt = modifiedAt ?: "",
+        firstName = firstName ?: "",
+        lastName = lastName ?: "",
+        nationality = nationality,
+        imageUrl = imageUrl,
+    )
 
 fun TeamDto.toDomain(): Team = Team(id, name, imageUrl, players?.map { it.toDomain() })

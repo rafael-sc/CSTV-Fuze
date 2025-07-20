@@ -8,5 +8,5 @@ data class LeagueDto(
     val id: Int,
     val name: String,
     @SerialName("image_url")
-    val imageUrl: String?
+    val imageUrl: String?,
 )

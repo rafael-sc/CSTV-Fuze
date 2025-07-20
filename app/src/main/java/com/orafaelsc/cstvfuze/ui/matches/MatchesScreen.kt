@@ -33,7 +33,7 @@ fun MatchesScreen(
     onMatchClick: (Match) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val isLandscape = LocalWindowInfo.current.containerSize.width > LocalWindowInfo.current.containerSize.height
+    val isLandscape = LocalWindowInfo.current.containerSize.run { width > height }
 
     Scaffold(
         modifier = modifier,

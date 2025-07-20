@@ -9,5 +9,6 @@
     <string name="match_details_back_description">Voltar a lista de partidas</string>
     <string name="match_details">Detailhes da partida</string>
     <string name="failed_to_load_team_details">Falha ao buscar os dados do time</string>
+    <string name="vs">vs</string>
 
 </resources>

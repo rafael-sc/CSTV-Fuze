@@ -9,9 +9,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.orafaelsc.cstvfuze.R
 import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
@@ -27,7 +29,7 @@ fun MatchHeader(
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // Team 1
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f),
@@ -35,15 +37,14 @@ fun MatchHeader(
             TeamItem(teamName = match.firstTeam.name, teamLogoUrl = match.firstTeam.iconUrl)
         }
 
-        // VS
         Text(
-            text = "vs",
+            text = stringResource(R.string.vs),
             color = ExtendedColors.Default.textSecondary,
             fontSize = 18.sp,
             modifier = Modifier.padding(horizontal = 16.dp),
         )
 
-        // Team 2
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.weight(1f),

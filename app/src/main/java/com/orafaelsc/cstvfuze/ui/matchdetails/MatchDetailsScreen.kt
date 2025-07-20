@@ -1,6 +1,5 @@
 package com.orafaelsc.cstvfuze.ui.matchdetails
 
-import android.R.style
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -12,15 +11,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.orafaelsc.cstvfuze.R
+import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.ui.components.CustomTopAppBar
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MatchesDetailsScreen(
     modifier: Modifier,
-    matchId: String? = null,
+    match: Match,
+    viewModel: MatchDetailsViewModel = koinViewModel<MatchDetailsViewModel>(),
     onBackClick: () -> Unit = { },
 ) {
+    viewModel.loadMatchData(match)
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -33,7 +37,7 @@ fun MatchesDetailsScreen(
         },
     ) { paddingValues ->
         Text(
-            text = stringResource(R.string.match_details) + matchId,
+            text = stringResource(R.string.match_details) + match,
             modifier =
                 Modifier
                     .padding(paddingValues)

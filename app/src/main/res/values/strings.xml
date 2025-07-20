@@ -8,4 +8,5 @@
     <string name="back">Back</string>
     <string name="match_details_back_description">Back to matches list</string>
     <string name="match_details">Match Details</string>
+    <string name="failed_to_load_team_details">Failed to fetch team details</string>
 </resources>

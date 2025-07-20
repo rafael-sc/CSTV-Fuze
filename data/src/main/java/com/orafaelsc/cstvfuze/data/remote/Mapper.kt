@@ -2,10 +2,12 @@ package com.orafaelsc.cstvfuze.data.remote
 
 import com.orafaelsc.cstvfuze.data.remote.dto.LeagueDto
 import com.orafaelsc.cstvfuze.data.remote.dto.MatchDto
+import com.orafaelsc.cstvfuze.data.remote.dto.PlayerDto
 import com.orafaelsc.cstvfuze.data.remote.dto.TeamDto
 import com.orafaelsc.cstvfuze.domain.model.League
 import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
+import com.orafaelsc.cstvfuze.domain.model.Player
 import com.orafaelsc.cstvfuze.domain.model.Team
 
 fun MatchDto.toDomain(): Match {
@@ -35,4 +37,19 @@ private fun getStatus(status: String?): MatchStatus {
 
 fun LeagueDto.toDomain(): League = League(id, name, imageUrl)
 
-fun TeamDto.toDomain(): Team = Team(id, name, imageUrl)
+fun PlayerDto.toDomain(): Player = Player(
+    id = id,
+    name = name,
+    slug = slug,
+    active = active,
+    role = role,
+    modifiedAt = modifiedAt,
+    age = age,
+    birthday = birthday,
+    firstName = firstName,
+    lastName = lastName,
+    nationality = nationality,
+    imageUrl = imageUrl,
+)
+
+fun TeamDto.toDomain(): Team = Team(id, name, imageUrl, players?.map { it.toDomain() })

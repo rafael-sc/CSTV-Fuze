@@ -4,5 +4,5 @@ data class Team(
     val id: Int,
     val name: String,
     val iconUrl: String?,
-    val players: MutableList<Player> = mutableListOf<Player>(),
+    val players: List<Player>? = null,
 )

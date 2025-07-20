@@ -8,5 +8,6 @@ data class TeamDto(
     val id: Int,
     val name: String,
     @SerialName("image_url")
-    val imageUrl: String?
+    val imageUrl: String?,
+    val players: List<PlayerDto>? = null
 )

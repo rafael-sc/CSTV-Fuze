@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults.Indicator
 import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.material3.pulltorefresh.pullToRefresh
@@ -40,10 +39,9 @@ fun MatchesScreen(
         topBar = {
             CustomTopAppBar(
                 modifier = Modifier.background(color = MaterialTheme.colorScheme.background),
-                title = "Matches"
+                title = "Matches",
             )
-        }
-
+        },
     ) { paddingValues ->
 
         PullToRefreshBox(
@@ -56,11 +54,9 @@ fun MatchesScreen(
         ) {
             when {
                 isLoading -> {
-
                 }
 
                 uiState.error != null -> {
-
                 }
 
                 else -> {

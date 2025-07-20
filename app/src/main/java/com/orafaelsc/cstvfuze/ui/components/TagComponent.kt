@@ -2,9 +2,7 @@ package com.orafaelsc.cstvfuze.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,21 +20,21 @@ fun TagComponent(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Transparent,
     text: String,
-    textColor: Color
+    textColor: Color,
 ) {
     Box(
-        modifier = modifier
-            .clip(
-                RoundedCornerShape(
-                    topStart = 0.dp,
-                    topEnd = 16.dp,
-                    bottomEnd = 0.dp,
-                    bottomStart = 16.dp
-                )
-            )
-            .background(backgroundColor)
-            .padding(horizontal = 12.dp, vertical = 2.dp),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .clip(
+                    RoundedCornerShape(
+                        topStart = 0.dp,
+                        topEnd = 16.dp,
+                        bottomEnd = 0.dp,
+                        bottomStart = 16.dp,
+                    ),
+                ).background(backgroundColor)
+                .padding(horizontal = 12.dp, vertical = 2.dp),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = text,
@@ -53,7 +51,7 @@ fun PreviewNowTagComponent() {
     TagComponent(
         backgroundColor = Color.Red,
         text = "AGORA",
-        textColor = Color.White
+        textColor = Color.White,
     )
 }
 
@@ -63,6 +61,6 @@ fun PreviewDateAndTimeComponent() {
     TagComponent(
         backgroundColor = Color.Gray,
         text = "HOJE, 19:00",
-        textColor = Color.White
+        textColor = Color.White,
     )
 }

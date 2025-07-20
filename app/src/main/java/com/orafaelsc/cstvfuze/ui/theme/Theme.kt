@@ -11,16 +11,13 @@ private val DarkColorScheme =
         background = PurpleDark,
         surface = PurpleDark,
         onPrimaryContainer = PurpleLight,
-        onSecondaryContainer = PurpleGrey
+        onSecondaryContainer = PurpleGrey,
     )
-
 
 @Composable
 fun CSTVFuzeccTheme(
-    darkTheme: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-
     MaterialTheme(
         colorScheme = DarkColorScheme,
         typography = Typography,

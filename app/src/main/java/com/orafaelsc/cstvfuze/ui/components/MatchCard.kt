@@ -1,14 +1,23 @@
 package com.orafaelsc.cstvfuze.ui.components
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,29 +30,32 @@ import com.orafaelsc.cstvfuze.domain.model.Match
 import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
 import com.orafaelsc.cstvfuze.domain.model.isLive
+import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 
 @Composable
 fun MatchCard(
     match: Match,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable { onClick() }
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimaryContainer
-        ),
-        shape = RoundedCornerShape(12.dp)
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable { onClick() }
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+        colors =
+            CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            ),
+        shape = RoundedCornerShape(12.dp),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
             horizontalArrangement = Arrangement.End,
-
-            ) {
+        ) {
             TagComponent(
                 backgroundColor = if (match.isLive()) Color.Red else Color.DarkGray,
                 text = match.starTimeText,
@@ -51,7 +63,7 @@ fun MatchCard(
             )
         }
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         ) {
             // Header with live indicator and time
             Spacer(modifier = Modifier.height(16.dp))
@@ -60,12 +72,12 @@ fun MatchCard(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 // Team 1
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 ) {
                     TeamItem(teamName = match.firstTeam.name, teamLogoUrl = match.firstTeam.iconUrl)
                 }
@@ -73,47 +85,48 @@ fun MatchCard(
                 // VS
                 Text(
                     text = "vs",
-                    color = Color.LightGray, // todo set TextSecondary from theme,
+                    color = MaterialTheme.colorScheme.secondary,
                     fontSize = 18.sp,
-                    modifier = Modifier.padding(horizontal = 16.dp)
+                    modifier = Modifier.padding(horizontal = 16.dp),
                 )
 
                 // Team 2
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 ) {
                     TeamItem(teamName = match.secondTeam.name, teamLogoUrl = match.secondTeam.iconUrl)
                 }
             }
 
-            //add a white line
+            // add a white line
             Spacer(modifier = Modifier.height(8.dp))
             HorizontalDivider(
                 modifier = Modifier.fillMaxWidth(),
                 thickness = 1.dp,
-                color = Color.White.copy(alpha = 0.3f)
+                color = Color.White.copy(alpha = 0.3f),
             )
             Spacer(modifier = Modifier.height(8.dp))
             // League info
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 AsyncImage(
-                    modifier = Modifier
-                        .size(16.dp)
-                        .background(
-                            color = Color.LightGray,
-                            shape = CircleShape
-                        ),
+                    modifier =
+                        Modifier
+                            .size(16.dp)
+                            .background(
+                                color = MaterialTheme.colorScheme.secondary,
+                                shape = CircleShape,
+                            ),
                     model = match.leagueLogo,
-                    contentDescription = "${match.description} logo"
+                    contentDescription = "${match.description} logo",
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = match.description,
-                    color = Color.LightGray, // todo set TextSecondary from theme
-                    fontSize = 12.sp
+                    color = ExtendedColors.Default.textPrimary,
+                    fontSize = 12.sp,
                 )
             }
         }
@@ -123,18 +136,19 @@ fun MatchCard(
 @Preview(showBackground = true)
 @Composable
 fun PreviewMatchCard() {
-    val match = Match(
-        id = 1,
-        firstTeam = Team(id = 1, name = "Team A", iconUrl = "https://example.com/team_a.png"),
-        secondTeam = Team(id = 2, name = "Team B", iconUrl = "https://example.com/team_b.png"),
-        startTime = java.time.LocalDateTime.now(),
-        description = "League Match",
-        starTimeText = "Hoje, 12:00",
-        status = MatchStatus.RUNNING,
-        leagueLogo = "https://example.com/league_logo.png"
-    )
+    val match =
+        Match(
+            id = 1,
+            firstTeam = Team(id = 1, name = "Team A", iconUrl = "https://example.com/team_a.png"),
+            secondTeam = Team(id = 2, name = "Team B", iconUrl = "https://example.com/team_b.png"),
+            startTime = java.time.LocalDateTime.now(),
+            description = "League Match",
+            starTimeText = "Hoje, 12:00",
+            status = MatchStatus.RUNNING,
+            leagueLogo = "https://example.com/league_logo.png",
+        )
     MatchCard(
         match = match,
-        onClick = {}
+        onClick = {},
     )
 }

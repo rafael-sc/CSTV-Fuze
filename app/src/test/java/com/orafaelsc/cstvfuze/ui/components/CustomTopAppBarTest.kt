@@ -1,6 +1,5 @@
 package com.orafaelsc.cstvfuze.ui.components
 
-import android.os.Build
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,22 +14,11 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.orafaelsc.cstvfuze.TestApplication
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.annotation.Config
 import kotlin.test.assertEquals
 
-@RunWith(RobolectricTestRunner::class)
-@Config(
-    sdk = [Build.VERSION_CODES.TIRAMISU],
-    manifest = Config.NONE,
-    application = TestApplication::class
-
-)
-class CustomTopAppBarKtTest {
+class CustomTopAppBarTest: BaseUITest() {
 
     @get:Rule
     val composeTestRule = createComposeRule()

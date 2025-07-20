@@ -85,7 +85,7 @@ fun MatchCard(
                 // VS
                 Text(
                     text = "vs",
-                    color = MaterialTheme.colorScheme.secondary,
+                    color = ExtendedColors.Default.textSecondary,
                     fontSize = 18.sp,
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )

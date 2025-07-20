@@ -1,6 +1,6 @@
 package com.orafaelsc.cstvfuze.core
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

@@ -21,6 +21,9 @@ import com.orafaelsc.cstvfuze.ui.components.MatchHeader
 import com.orafaelsc.cstvfuze.ui.components.PlayerCard
 import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 
+private const val SMALL_SIDE_WEIGHT = 0.4f
+private const val LARGE_SIDE_WEIGHT = 0.6f
+
 @Composable
 fun MatchDetailsScreenLandscape(
     modifier: Modifier = Modifier,
@@ -38,7 +41,7 @@ fun MatchDetailsScreenLandscape(
         Column(
             modifier =
                 Modifier
-                    .weight(0.4f)
+                    .weight(SMALL_SIDE_WEIGHT)
                     .fillMaxHeight(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
@@ -49,7 +52,7 @@ fun MatchDetailsScreenLandscape(
         Row(
             modifier =
                 Modifier
-                    .weight(0.6f)
+                    .weight(LARGE_SIDE_WEIGHT)
                     .fillMaxHeight(),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {

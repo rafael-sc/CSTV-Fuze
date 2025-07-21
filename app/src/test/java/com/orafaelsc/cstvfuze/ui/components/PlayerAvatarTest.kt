@@ -186,7 +186,8 @@ class PlayerAvatarTest : BaseUITest() {
     @Test
     fun `PlayerAvatar with extremely long player name`() {
         val longPlayerName =
-            "This is an extremely long player name that should be handled correctly without causing any UI issues or performance problems in the content description"
+            "This is an extremely long player name that should be handled correctly without causing " +
+                "any UI issues or performance problems in the content description"
         val playerAvatarUrl = "https://example.com/avatar.jpg"
 
         composeTestRule.setContent {

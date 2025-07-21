@@ -46,14 +46,14 @@ fun MatchesScreen(
         PullToRefreshBox(
             isRefreshing = uiState.isLoading,
             onRefresh = { viewModel.fetchMatches() },
-            modifier =
-                Modifier
-                    .padding(paddingValues)
-                    .fillMaxSize(),
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize(),
         ) {
             when {
                 uiState.isLoading -> {
-//                   //as pull to refresh box has its own loading state, theres no need to show this  until pagination is implemented
+//                   //as pull to refresh box has its own loading state, theres
+                    //                   no need to show this  until pagination is implemented
 //                    Box(
 //                        modifier =
 //                            Modifier

@@ -15,7 +15,7 @@ class SplashViewModel : ViewModel() {
     fun initialize() {
         viewModelScope.launch {
             // fixed delay to simulate initialization
-            delay(2000L) // 2 seconds
+            delay(DELAY_TIME)
 
             _state.value =
                 _state.value.copy(
@@ -23,5 +23,9 @@ class SplashViewModel : ViewModel() {
                     isInitialized = true,
                 )
         }
+    }
+    private companion object{
+        const val DELAY_TIME = 2000L // 2 seconds
+
     }
 }

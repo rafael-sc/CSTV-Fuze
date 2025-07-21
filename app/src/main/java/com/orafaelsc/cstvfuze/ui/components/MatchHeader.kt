@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -66,7 +65,6 @@ fun MatchHeader(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-
                 Text(
                     text = getMatchDate(match.startTime),
                     color = ExtendedColors.Default.textPrimary,
@@ -76,13 +74,14 @@ fun MatchHeader(
     }
 }
 
-private fun getMatchDate(startDate: String?): String {
-    return startDate?.toLocalDate()?.let { localDateTime ->
-        val dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-            .withLocale(Locale.getDefault())
+private fun getMatchDate(startDate: String?): String =
+    startDate?.toLocalDate()?.let { localDateTime ->
+        val dateFormatter =
+            DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.MEDIUM)
+                .withLocale(Locale.getDefault())
         localDateTime.format(dateFormatter)
     } ?: ""
-}
 
 @Preview
 @Composable

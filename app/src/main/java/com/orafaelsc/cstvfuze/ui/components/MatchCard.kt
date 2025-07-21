@@ -24,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,8 +36,6 @@ import com.orafaelsc.cstvfuze.domain.model.isLive
 import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
 import com.orafaelsc.cstvfuze.util.toLocalDate
 import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 @Composable
@@ -113,13 +110,15 @@ fun MatchCard(
     }
 }
 
-private fun getTagText(context: Context, match: Match): String {
-    return if (match.status.equals(MatchStatus.FINISHED)) {
+private fun getTagText(
+    context: Context,
+    match: Match,
+): String =
+    if (match.status.equals(MatchStatus.FINISHED)) {
         context.getString(R.string.finished)
     } else {
         getStartTime(context, match.startTime)
     }
-}
 
 private fun getStartTime(
     context: Context,
@@ -141,7 +140,6 @@ private fun getStartTime(
         }
     } ?: ""
 }
-
 
 @Preview(showBackground = true)
 @Composable

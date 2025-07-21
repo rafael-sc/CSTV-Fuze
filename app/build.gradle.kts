@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
+    alias(libs.plugins.google.firebase.crashlytics)
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
@@ -69,54 +71,67 @@ detekt {
 }
 
 dependencies {
+
     implementation(project(":core"))
     implementation(project(":data"))
     implementation(project(":domain"))
 
     implementation(platform(libs.androidx.compose.bom))
-    implementation(platform(libs.koin.bom))
+    implementation(platform(libs.firebase.bom))
 
-    // Core Android dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-
-    // Compose UI dependencies
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+    implementation(libs.firebase.crashlytics)
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    // Room dependencies
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+
+    // Splash Screen API
+    implementation(libs.androidx.core.splashscreen)
+
+    implementation(libs.androidx.ui.test.junit4.android)
+    implementation(libs.androidx.datastore.core.android)
+    implementation(libs.firebase.firestore)
+    ksp(libs.androidx.room.compiler)
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // Splash Screen
-    implementation(libs.androidx.core.splashscreen)
+    // DataStore for theme preferences
+    implementation(libs.androidx.datastore.preferences)
 
-    // Dependency Injection
-    implementation(libs.koin.core)
-    implementation(libs.koin.androidx.compose)
+    implementation(libs.androidx.material.icons.extended)
 
-    // Testing dependencies
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(kotlin("test"))
-
-    // Android testing dependencies
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.robolectric)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-
-    // Debug dependencies
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.coil.test)
+    implementation(platform(libs.koin.bom))
 
-    // Detekt plugin
+    implementation(libs.koin.core)
+    implementation(libs.koin.androidx.compose)
     detektPlugins(libs.detekt.formatting)
+    testImplementation(kotlin("test"))
+    testImplementation(libs.koin.test.junit5)
 }

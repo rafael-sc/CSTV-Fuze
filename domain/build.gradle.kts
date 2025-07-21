@@ -5,8 +5,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.ksp)
 }
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
@@ -17,7 +17,6 @@ kotlin {
         jvmTarget.set(JvmTarget.JVM_17)
     }
 }
-
 ktlint {
     android.set(true)
 }
@@ -36,8 +35,7 @@ dependencies {
 
     // Testing dependencies
     testImplementation(libs.junit)
-    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
-    testImplementation(libs.truth)
+    testImplementation(libs.coroutines.test)
     testImplementation(kotlin("test"))
 }

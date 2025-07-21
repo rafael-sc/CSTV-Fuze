@@ -117,17 +117,17 @@ private fun getTagText(
     if (match.status.equals(MatchStatus.FINISHED)) {
         context.getString(R.string.finished)
     } else {
-        getStartTime(context, match.startTime)
+        getStartTime(context, match)
     }
 
 private fun getStartTime(
     context: Context,
-    beginAt: String?,
+    match: Match,
 ): String {
     val now = LocalDateTime.now()
-    return beginAt?.toLocalDate()?.let { startTime ->
+    return match.startTime?.toLocalDate()?.let { startTime ->
         when {
-            now.isAfter(startTime) -> context.getString(R.string.now)
+            now.isAfter(startTime) && match.status == MatchStatus.RUNNING -> context.getString(R.string.now)
             startTime.isBefore(now.plusDays(1)) -> {
                 context.getString(R.string.today) + ", " + startTime.format(DateTimeFormatter.ofPattern("HH:mm"))
             }

@@ -36,6 +36,7 @@ fun TeamItem(
             color = ExtendedColors.Default.textPrimary,
             fontSize = 14.sp,
             textAlign = TextAlign.Center,
+            maxLines = 1
         )
     }
 }
@@ -58,6 +59,7 @@ private fun TeamLogo(
             modifier = modifier,
             color = ExtendedColors.Default.textSecondary,
             fontWeight = FontWeight.Bold,
+            maxLines = 1,
             textAlign = TextAlign.Center,
         )
     }

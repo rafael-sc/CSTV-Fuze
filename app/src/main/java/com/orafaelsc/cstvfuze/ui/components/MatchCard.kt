@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,7 +65,7 @@ fun MatchCard(
         ) {
             TagComponent(
                 backgroundColor = if (match.isLive()) Color.Red else Color.DarkGray,
-                text = getStartTime(context, match.startTime),
+                text = getTagText(context, match),
                 textColor = if (match.isLive()) Color.White else Color.LightGray,
             )
         }
@@ -108,6 +109,14 @@ fun MatchCard(
                 )
             }
         }
+    }
+}
+
+private fun getTagText(context: Context, match: Match): String {
+    return if (match.status.equals(MatchStatus.FINISHED)) {
+        context.getString(R.string.finished)
+    } else {
+        getStartTime(context, match.startTime)
     }
 }
 

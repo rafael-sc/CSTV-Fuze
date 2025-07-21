@@ -9,6 +9,6 @@ interface MatchesApi {
     @GET("csgo/matches")
     suspend fun getMatches(
         @Query("sort") sortBy: String = "-status,begin_at", // Sort by running first, then by date
-        @Query("filter[status]") status: String = "not_started,running",
+        @Query("filter[status]") status: String = "not_started,running,finished",
     ): Response<List<MatchDto>>
 }

@@ -3,6 +3,7 @@ package com.orafaelsc.cstvfuze.di
 import com.orafaelsc.cstvfuze.core.ResourceProvider
 import com.orafaelsc.cstvfuze.ui.matchdetails.MatchDetailsViewModel
 import com.orafaelsc.cstvfuze.ui.matches.MatchesViewModel
+import com.orafaelsc.cstvfuze.ui.splash.SplashViewModel
 import com.orafaelsc.cstvfuze.util.ResourceProviderImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
@@ -26,4 +27,6 @@ val appModule =
                 resourceProvider = get(),
             )
         }
+
+        viewModel { SplashViewModel() }
     }

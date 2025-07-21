@@ -99,6 +99,10 @@ dependencies {
     // Room dependencies
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+
+    // Splash Screen API
+    implementation(libs.androidx.core.splashscreen)
+
     implementation(libs.androidx.ui.test.junit4.android)
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.firebase.firestore)

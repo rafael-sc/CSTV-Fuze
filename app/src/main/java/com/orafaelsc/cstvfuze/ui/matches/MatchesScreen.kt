@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -54,17 +53,18 @@ fun MatchesScreen(
         ) {
             when {
                 uiState.isLoading -> {
-                    Box(
-                        modifier =
-                            Modifier
-                                .fillMaxSize()
-                                .padding(16.dp),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        CircularProgressIndicator(
-                            color = MaterialTheme.colorScheme.primary,
-                        )
-                    }
+//                   //as pull to refresh box has its own loading state, theres no need to show this  until pagination is implemented
+//                    Box(
+//                        modifier =
+//                            Modifier
+//                                .fillMaxSize()
+//                                .padding(16.dp),
+//                        contentAlignment = Alignment.Center,
+//                    ) {
+//                        CircularProgressIndicator(
+//                            color = MaterialTheme.colorScheme.primary,
+//                        )
+//                    }
                 }
 
                 uiState.error != null -> {

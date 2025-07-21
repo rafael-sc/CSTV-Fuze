@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.orafaelsc.cstvfuze.ui.matchdetails.MatchesDetailsScreen
 import com.orafaelsc.cstvfuze.ui.matches.MatchesScreen
+import com.orafaelsc.cstvfuze.ui.splash.SplashScreen
 
 @Composable
 fun AppNavigation(
@@ -21,8 +22,20 @@ fun AppNavigation(
 
     NavHost(
         navController = navController,
-        startDestination = "matches",
+        startDestination = "splash",
     ) {
+
+        composable("splash") {
+            SplashScreen(
+                modifier = modifier,
+                onNavigateToMatches = {
+                    navController.navigate("matches") {
+                        popUpTo("splash") { inclusive = true }
+                    }
+                }
+            )
+        }
+
         composable("matches") {
             MatchesScreen(
                 modifier = modifier,

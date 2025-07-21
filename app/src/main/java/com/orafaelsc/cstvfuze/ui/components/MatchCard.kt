@@ -35,6 +35,7 @@ import com.orafaelsc.cstvfuze.domain.model.MatchStatus
 import com.orafaelsc.cstvfuze.domain.model.Team
 import com.orafaelsc.cstvfuze.domain.model.isLive
 import com.orafaelsc.cstvfuze.ui.theme.ExtendedColors
+import com.orafaelsc.cstvfuze.util.toLocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
@@ -76,7 +77,7 @@ fun MatchCard(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Teams section
-            MatchHeader(modifier = Modifier, match)
+            MatchHeader(modifier = Modifier, match, showMatchDate = false)
 
             // add a white line
             Spacer(modifier = Modifier.height(8.dp))
@@ -141,17 +142,6 @@ private fun getStartTime(
     } ?: ""
 }
 
-private fun String.toLocalDate(): LocalDateTime? =
-    try {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        val data = LocalDateTime.parse(this, formatter)
-        data
-            .atZone(ZoneOffset.UTC)
-            .withZoneSameInstant(ZoneId.systemDefault())
-            .toLocalDateTime()
-    } catch (_: Exception) {
-        null
-    }
 
 @Preview(showBackground = true)
 @Composable

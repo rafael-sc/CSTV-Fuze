@@ -348,7 +348,7 @@ class MatchCardTest : BaseUITest() {
         composeTestRule.onNodeWithContentDescription("Test League logo").assertIsDisplayed()
     }
 
-       @Test
+    @Test
     fun `MatchCard rendering in different locales timezones for start time`() {
         val utcMatch = createTestMatch(startTime = "2025-01-15T14:30:00Z")
 

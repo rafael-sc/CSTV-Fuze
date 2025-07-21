@@ -24,7 +24,6 @@ fun AppNavigation(
         navController = navController,
         startDestination = "splash",
     ) {
-
         composable("splash") {
             SplashScreen(
                 modifier = modifier,
@@ -32,7 +31,7 @@ fun AppNavigation(
                     navController.navigate("matches") {
                         popUpTo("splash") { inclusive = true }
                     }
-                }
+                },
             )
         }
 

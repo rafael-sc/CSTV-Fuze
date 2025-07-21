@@ -29,30 +29,30 @@ import org.koin.androidx.compose.koinViewModel
 fun SplashScreen(
     modifier: Modifier = Modifier,
     viewModel: SplashViewModel = koinViewModel(),
-    onNavigateToMatches: () -> Unit = {}
+    onNavigateToMatches: () -> Unit = {},
 ) {
     val state by viewModel.state.collectAsState()
-
 
     LaunchedEffect(Unit) {
         viewModel.initialize()
     }
 
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             // App logo or icon
             Image(
                 painter = painterResource(id = R.drawable.img_fuze_logo), // Replace with your app logo
                 contentDescription = stringResource(R.string.app_name),
-                modifier = Modifier.size(120.dp)
+                modifier = Modifier.size(120.dp),
             )
 
             // App name
@@ -61,14 +61,14 @@ fun SplashScreen(
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = ExtendedColors.Default.textPrimary,
-                modifier = Modifier.padding(top = 16.dp)
+                modifier = Modifier.padding(top = 16.dp),
             )
 
             // Loading indicator
             if (state.isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.padding(top = 32.dp),
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             } else {
                 onNavigateToMatches()
